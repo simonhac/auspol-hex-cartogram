@@ -1,0 +1,27 @@
+/**
+ * Australian Federal Electorate Hex Cartogram
+ *
+ * Equal-area hex maps for Australian federal House of Representatives electorates.
+ * No framework dependencies — just data and pure utility functions.
+ *
+ * Usage:
+ *   import { FED_2025, cellToPixel, computeStateBorders } from "auspol-hex-cartogram";
+ *   const { electorates } = FED_2025;
+ */
+
+// Types
+export type { GridEntry, Electorate, ElectionMap } from "./types";
+
+// Utilities
+export {
+  HEX_SIZE,
+  nameToSeatId,
+  cellToPixel,
+  resolveGrid,
+  hexPoints,
+  computeStateBorders,
+  STATE_HEX_COLORS,
+} from "./grid-utils";
+
+// Election datasets (all loaded from elections.json)
+export { FED_2019, FED_2022, FED_2025 } from "./elections";

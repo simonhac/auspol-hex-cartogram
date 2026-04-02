@@ -1,0 +1,43 @@
+{
+  "name": "auspol-hex-cartogram",
+  "version": "1.0.0",
+  "description": "Equal-area hex cartogram of Australian federal electorates",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.cjs"
+    },
+    "./data/elections.json": "./data/elections.json"
+  },
+  "files": ["dist", "data"],
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.23",
+    "react": "^18.3.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.1"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}
