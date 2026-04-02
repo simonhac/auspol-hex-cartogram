@@ -1,6 +1,6 @@
 {
   "name": "auspol-hex-cartogram",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Equal-area hex cartogram of Australian federal electorates",
   "license": "MIT",
   "type": "module",

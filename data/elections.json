@@ -3,470 +3,2730 @@
     "label": "2019 Federal",
     "seatCount": 151,
     "grid": [
-      [ 9, 11, "ACT", "Bean"],
-      [10, 11, "ACT", "Canberra"],
-      [ 9, 10, "ACT", "Fenner"],
-      [11, 10, "NSW", "Banks"],
-      [11, 11, "NSW", "Barton"],
-      [10,  7, "NSW", "Bennelong"],
-      [ 8,  7, "NSW", "Berowra"],
-      [11,  9, "NSW", "Blaxland"],
-      [12,  7, "NSW", "Bradfield"],
-      [ 4,  7, "NSW", "Calare"],
-      [ 9,  8, "NSW", "Chifley"],
-      [ 9,  9, "NSW", "Cook"],
-      [ 5,  6, "NSW", "Cowper"],
-      [ 7,  9, "NSW", "Cunningham"],
-      [10,  6, "NSW", "Dobell"],
-      [ 6,  8, "NSW", "Eden-Monaro"],
-      [ 4,  9, "NSW", "Farrer"],
-      [10,  8, "NSW", "Fowler"],
-      [ 6,  9, "NSW", "Gilmore"],
-      [12,  9, "NSW", "Grayndler"],
-      [11,  8, "NSW", "Greenway"],
-      [10, 10, "NSW", "Hughes"],
-      [ 5,  9, "NSW", "Hume"],
-      [12,  6, "NSW", "Hunter"],
-      [12, 12, "NSW", "Kingsford Smith"],
-      [ 7,  6, "NSW", "Lindsay"],
-      [ 6,  6, "NSW", "Lyne"],
-      [ 8,  8, "NSW", "Macarthur"],
-      [ 9,  7, "NSW", "Mackellar"],
-      [ 8,  6, "NSW", "Macquarie"],
-      [ 7,  7, "NSW", "McMahon"],
-      [11,  7, "NSW", "Mitchell"],
-      [ 5,  8, "NSW", "New England"],
-      [13,  7, "NSW", "Newcastle"],
-      [13,  9, "NSW", "North Sydney"],
-      [ 5,  7, "NSW", "Page"],
-      [ 4,  6, "NSW", "Parkes"],
-      [10,  9, "NSW", "Parramatta"],
-      [13,  6, "NSW", "Paterson"],
-      [12,  8, "NSW", "Reid"],
-      [ 6,  7, "NSW", "Richmond"],
-      [ 4,  8, "NSW", "Riverina"],
-      [ 9,  6, "NSW", "Robertson"],
-      [11,  6, "NSW", "Shortland"],
-      [13, 10, "NSW", "Sydney"],
-      [13,  8, "NSW", "Warringah"],
-      [12, 10, "NSW", "Watson"],
-      [12, 11, "NSW", "Wentworth"],
-      [ 8,  9, "NSW", "Werriwa"],
-      [ 7,  8, "NSW", "Whitlam"],
-      [ 3,  5, "NT", "Lingiari"],
-      [ 2,  5, "NT", "Solomon"],
-      [ 7,  5, "QLD", "Blair"],
-      [11,  2, "QLD", "Bonner"],
-      [12,  4, "QLD", "Bowman"],
-      [10,  3, "QLD", "Brisbane"],
-      [ 8,  2, "QLD", "Capricornia"],
-      [ 8,  1, "QLD", "Dawson"],
-      [ 8,  3, "QLD", "Dickson"],
-      [11,  4, "QLD", "Fadden"],
-      [10,  1, "QLD", "Fairfax"],
-      [10,  2, "QLD", "Fisher"],
-      [ 7,  3, "QLD", "Flynn"],
-      [10,  5, "QLD", "Forde"],
-      [10,  4, "QLD", "Griffith"],
-      [ 6,  5, "QLD", "Groom"],
-      [ 9,  1, "QLD", "Herbert"],
-      [ 6,  3, "QLD", "Hinkler"],
-      [ 6,  4, "QLD", "Kennedy"],
-      [10,  0, "QLD", "Leichhardt"],
-      [11,  3, "QLD", "Lilley"],
-      [ 9,  2, "QLD", "Longman"],
-      [ 5,  5, "QLD", "Maranoa"],
-      [12,  5, "QLD", "McPherson"],
-      [11,  5, "QLD", "Moncrieff"],
-      [ 9,  4, "QLD", "Moreton"],
-      [ 8,  5, "QLD", "Oxley"],
-      [ 9,  3, "QLD", "Petrie"],
-      [ 8,  4, "QLD", "Rankin"],
-      [ 9,  5, "QLD", "Ryan"],
-      [ 9,  0, "QLD", "Wide Bay"],
-      [ 7,  4, "QLD", "Wright"],
-      [ 3, 10, "SA", "Adelaide"],
-      [ 2,  7, "SA", "Barker"],
-      [ 3,  9, "SA", "Boothby"],
-      [ 3,  6, "SA", "Grey"],
-      [ 2,  9, "SA", "Hindmarsh"],
-      [ 3, 11, "SA", "Kingston"],
-      [ 3,  8, "SA", "Makin"],
-      [ 3, 12, "SA", "Mayo"],
-      [ 3,  7, "SA", "Spence"],
-      [ 2, 11, "SA", "Sturt"],
-      [ 9, 17, "TAS", "Bass"],
-      [ 7, 17, "TAS", "Braddon"],
-      [ 9, 18, "TAS", "Clark"],
-      [ 8, 18, "TAS", "Franklin"],
-      [ 8, 17, "TAS", "Lyons"],
-      [ 9, 12, "VIC", "Aston"],
-      [ 5, 14, "VIC", "Ballarat"],
-      [ 4, 11, "VIC", "Bendigo"],
-      [ 9, 13, "VIC", "Bruce"],
-      [ 6, 10, "VIC", "Calwell"],
-      [10, 13, "VIC", "Casey"],
-      [ 7, 13, "VIC", "Chisholm"],
-      [ 8, 12, "VIC", "Cooper"],
-      [ 5, 15, "VIC", "Corangamite"],
-      [ 4, 12, "VIC", "Corio"],
-      [ 8, 11, "VIC", "Deakin"],
-      [ 9, 15, "VIC", "Dunkley"],
-      [10, 15, "VIC", "Flinders"],
-      [ 6, 12, "VIC", "Fraser"],
-      [ 6, 15, "VIC", "Gellibrand"],
-      [11, 12, "VIC", "Gippsland"],
-      [ 8, 15, "VIC", "Goldstein"],
-      [ 5, 11, "VIC", "Gorton"],
-      [ 8, 14, "VIC", "Higgins"],
-      [10, 14, "VIC", "Holt"],
-      [ 8, 13, "VIC", "Hotham"],
-      [ 8, 10, "VIC", "Indi"],
-      [ 9, 14, "VIC", "Isaacs"],
-      [ 6, 11, "VIC", "Jagajaga"],
-      [ 6, 13, "VIC", "Kooyong"],
-      [11, 14, "VIC", "La Trobe"],
-      [ 5, 12, "VIC", "Lalor"],
-      [ 7, 15, "VIC", "Macnamara"],
-      [ 4, 10, "VIC", "Mallee"],
-      [ 6, 14, "VIC", "Maribyrnong"],
-      [10, 12, "VIC", "McEwen"],
-      [ 7, 14, "VIC", "Melbourne"],
-      [ 7, 11, "VIC", "Menzies"],
-      [11, 13, "VIC", "Monash"],
-      [ 5, 10, "VIC", "Nicholls"],
-      [ 7, 10, "VIC", "Scullin"],
-      [ 4, 13, "VIC", "Wannon"],
-      [ 7, 12, "VIC", "Wills"],
-      [ 0, 11, "WA", "Brand"],
-      [ 2, 12, "WA", "Burt"],
-      [ 1, 12, "WA", "Canning"],
-      [ 1,  9, "WA", "Cowan"],
-      [ 0,  9, "WA", "Curtin"],
-      [ 2,  6, "WA", "Durack"],
-      [ 0, 13, "WA", "Forrest"],
-      [ 0, 10, "WA", "Fremantle"],
-      [ 2,  8, "WA", "Hasluck"],
-      [ 1,  8, "WA", "Moore"],
-      [ 1, 13, "WA", "O'Connor"],
-      [ 1,  7, "WA", "Pearce"],
-      [ 1, 10, "WA", "Perth"],
-      [ 0,  8, "WA", "Stirling"],
-      [ 2, 10, "WA", "Swan"],
-      [ 1, 11, "WA", "Tangney"]
+      [
+        9,
+        12,
+        "ACT",
+        "Bean"
+      ],
+      [
+        10,
+        12,
+        "ACT",
+        "Canberra"
+      ],
+      [
+        9,
+        11,
+        "ACT",
+        "Fenner"
+      ],
+      [
+        8,
+        10,
+        "NSW",
+        "Banks"
+      ],
+      [
+        9,
+        10,
+        "NSW",
+        "Barton"
+      ],
+      [
+        11,
+        8,
+        "NSW",
+        "Bennelong"
+      ],
+      [
+        10,
+        8,
+        "NSW",
+        "Berowra"
+      ],
+      [
+        10,
+        9,
+        "NSW",
+        "Blaxland"
+      ],
+      [
+        12,
+        8,
+        "NSW",
+        "Bradfield"
+      ],
+      [
+        5,
+        8,
+        "NSW",
+        "Calare"
+      ],
+      [
+        7,
+        8,
+        "NSW",
+        "Chifley"
+      ],
+      [
+        11,
+        11,
+        "NSW",
+        "Cook"
+      ],
+      [
+        11,
+        7,
+        "NSW",
+        "Cowper"
+      ],
+      [
+        12,
+        11,
+        "NSW",
+        "Cunningham"
+      ],
+      [
+        7,
+        7,
+        "NSW",
+        "Dobell"
+      ],
+      [
+        12,
+        13,
+        "NSW",
+        "Eden-Monaro"
+      ],
+      [
+        4,
+        9,
+        "NSW",
+        "Farrer"
+      ],
+      [
+        8,
+        9,
+        "NSW",
+        "Fowler"
+      ],
+      [
+        12,
+        12,
+        "NSW",
+        "Gilmore"
+      ],
+      [
+        10,
+        10,
+        "NSW",
+        "Grayndler"
+      ],
+      [
+        7,
+        9,
+        "NSW",
+        "Greenway"
+      ],
+      [
+        10,
+        11,
+        "NSW",
+        "Hughes"
+      ],
+      [
+        5,
+        10,
+        "NSW",
+        "Hume"
+      ],
+      [
+        5,
+        7,
+        "NSW",
+        "Hunter"
+      ],
+      [
+        13,
+        11,
+        "NSW",
+        "Kingsford Smith"
+      ],
+      [
+        5,
+        9,
+        "NSW",
+        "Lindsay"
+      ],
+      [
+        10,
+        7,
+        "NSW",
+        "Lyne"
+      ],
+      [
+        6,
+        10,
+        "NSW",
+        "Macarthur"
+      ],
+      [
+        13,
+        8,
+        "NSW",
+        "Mackellar"
+      ],
+      [
+        6,
+        8,
+        "NSW",
+        "Macquarie"
+      ],
+      [
+        6,
+        9,
+        "NSW",
+        "McMahon"
+      ],
+      [
+        8,
+        8,
+        "NSW",
+        "Mitchell"
+      ],
+      [
+        4,
+        7,
+        "NSW",
+        "New England"
+      ],
+      [
+        9,
+        7,
+        "NSW",
+        "Newcastle"
+      ],
+      [
+        13,
+        10,
+        "NSW",
+        "North Sydney"
+      ],
+      [
+        12,
+        7,
+        "NSW",
+        "Page"
+      ],
+      [
+        4,
+        8,
+        "NSW",
+        "Parkes"
+      ],
+      [
+        9,
+        9,
+        "NSW",
+        "Parramatta"
+      ],
+      [
+        6,
+        7,
+        "NSW",
+        "Paterson"
+      ],
+      [
+        12,
+        9,
+        "NSW",
+        "Reid"
+      ],
+      [
+        13,
+        7,
+        "NSW",
+        "Richmond"
+      ],
+      [
+        4,
+        10,
+        "NSW",
+        "Riverina"
+      ],
+      [
+        9,
+        8,
+        "NSW",
+        "Robertson"
+      ],
+      [
+        8,
+        7,
+        "NSW",
+        "Shortland"
+      ],
+      [
+        11,
+        10,
+        "NSW",
+        "Sydney"
+      ],
+      [
+        13,
+        9,
+        "NSW",
+        "Warringah"
+      ],
+      [
+        11,
+        9,
+        "NSW",
+        "Watson"
+      ],
+      [
+        12,
+        10,
+        "NSW",
+        "Wentworth"
+      ],
+      [
+        7,
+        10,
+        "NSW",
+        "Werriwa"
+      ],
+      [
+        11,
+        12,
+        "NSW",
+        "Whitlam"
+      ],
+      [
+        4,
+        6,
+        "NT",
+        "Lingiari"
+      ],
+      [
+        3,
+        6,
+        "NT",
+        "Solomon"
+      ],
+      [
+        8,
+        4,
+        "QLD",
+        "Blair"
+      ],
+      [
+        12,
+        4,
+        "QLD",
+        "Bonner"
+      ],
+      [
+        12,
+        5,
+        "QLD",
+        "Bowman"
+      ],
+      [
+        10,
+        5,
+        "QLD",
+        "Brisbane"
+      ],
+      [
+        9,
+        2,
+        "QLD",
+        "Capricornia"
+      ],
+      [
+        10,
+        1,
+        "QLD",
+        "Dawson"
+      ],
+      [
+        9,
+        4,
+        "QLD",
+        "Dickson"
+      ],
+      [
+        11,
+        6,
+        "QLD",
+        "Fadden"
+      ],
+      [
+        11,
+        2,
+        "QLD",
+        "Fairfax"
+      ],
+      [
+        11,
+        3,
+        "QLD",
+        "Fisher"
+      ],
+      [
+        8,
+        3,
+        "QLD",
+        "Flynn"
+      ],
+      [
+        10,
+        6,
+        "QLD",
+        "Forde"
+      ],
+      [
+        11,
+        5,
+        "QLD",
+        "Griffith"
+      ],
+      [
+        7,
+        5,
+        "QLD",
+        "Groom"
+      ],
+      [
+        9,
+        1,
+        "QLD",
+        "Herbert"
+      ],
+      [
+        10,
+        2,
+        "QLD",
+        "Hinkler"
+      ],
+      [
+        6,
+        5,
+        "QLD",
+        "Kennedy"
+      ],
+      [
+        10,
+        0,
+        "QLD",
+        "Leichhardt"
+      ],
+      [
+        11,
+        4,
+        "QLD",
+        "Lilley"
+      ],
+      [
+        10,
+        3,
+        "QLD",
+        "Longman"
+      ],
+      [
+        6,
+        6,
+        "QLD",
+        "Maranoa"
+      ],
+      [
+        13,
+        6,
+        "QLD",
+        "McPherson"
+      ],
+      [
+        12,
+        6,
+        "QLD",
+        "Moncrieff"
+      ],
+      [
+        8,
+        5,
+        "QLD",
+        "Moreton"
+      ],
+      [
+        8,
+        6,
+        "QLD",
+        "Oxley"
+      ],
+      [
+        10,
+        4,
+        "QLD",
+        "Petrie"
+      ],
+      [
+        9,
+        6,
+        "QLD",
+        "Rankin"
+      ],
+      [
+        9,
+        5,
+        "QLD",
+        "Ryan"
+      ],
+      [
+        9,
+        3,
+        "QLD",
+        "Wide Bay"
+      ],
+      [
+        7,
+        6,
+        "QLD",
+        "Wright"
+      ],
+      [
+        3,
+        11,
+        "SA",
+        "Adelaide"
+      ],
+      [
+        3,
+        8,
+        "SA",
+        "Barker"
+      ],
+      [
+        3,
+        12,
+        "SA",
+        "Boothby"
+      ],
+      [
+        3,
+        7,
+        "SA",
+        "Grey"
+      ],
+      [
+        2,
+        10,
+        "SA",
+        "Hindmarsh"
+      ],
+      [
+        2,
+        12,
+        "SA",
+        "Kingston"
+      ],
+      [
+        3,
+        9,
+        "SA",
+        "Makin"
+      ],
+      [
+        3,
+        13,
+        "SA",
+        "Mayo"
+      ],
+      [
+        2,
+        8,
+        "SA",
+        "Spence"
+      ],
+      [
+        3,
+        10,
+        "SA",
+        "Sturt"
+      ],
+      [
+        9,
+        18,
+        "TAS",
+        "Bass"
+      ],
+      [
+        7,
+        18,
+        "TAS",
+        "Braddon"
+      ],
+      [
+        7,
+        19,
+        "TAS",
+        "Clark"
+      ],
+      [
+        8,
+        19,
+        "TAS",
+        "Franklin"
+      ],
+      [
+        8,
+        18,
+        "TAS",
+        "Lyons"
+      ],
+      [
+        9,
+        13,
+        "VIC",
+        "Aston"
+      ],
+      [
+        5,
+        13,
+        "VIC",
+        "Ballarat"
+      ],
+      [
+        4,
+        12,
+        "VIC",
+        "Bendigo"
+      ],
+      [
+        9,
+        14,
+        "VIC",
+        "Bruce"
+      ],
+      [
+        6,
+        11,
+        "VIC",
+        "Calwell"
+      ],
+      [
+        10,
+        14,
+        "VIC",
+        "Casey"
+      ],
+      [
+        8,
+        13,
+        "VIC",
+        "Chisholm"
+      ],
+      [
+        7,
+        13,
+        "VIC",
+        "Cooper"
+      ],
+      [
+        4,
+        13,
+        "VIC",
+        "Corangamite"
+      ],
+      [
+        5,
+        15,
+        "VIC",
+        "Corio"
+      ],
+      [
+        8,
+        12,
+        "VIC",
+        "Deakin"
+      ],
+      [
+        9,
+        16,
+        "VIC",
+        "Dunkley"
+      ],
+      [
+        10,
+        16,
+        "VIC",
+        "Flinders"
+      ],
+      [
+        6,
+        15,
+        "VIC",
+        "Fraser"
+      ],
+      [
+        6,
+        16,
+        "VIC",
+        "Gellibrand"
+      ],
+      [
+        11,
+        13,
+        "VIC",
+        "Gippsland"
+      ],
+      [
+        8,
+        16,
+        "VIC",
+        "Goldstein"
+      ],
+      [
+        6,
+        13,
+        "VIC",
+        "Gorton"
+      ],
+      [
+        7,
+        16,
+        "VIC",
+        "Higgins"
+      ],
+      [
+        10,
+        15,
+        "VIC",
+        "Holt"
+      ],
+      [
+        8,
+        14,
+        "VIC",
+        "Hotham"
+      ],
+      [
+        8,
+        11,
+        "VIC",
+        "Indi"
+      ],
+      [
+        9,
+        15,
+        "VIC",
+        "Isaacs"
+      ],
+      [
+        6,
+        12,
+        "VIC",
+        "Jagajaga"
+      ],
+      [
+        7,
+        14,
+        "VIC",
+        "Kooyong"
+      ],
+      [
+        11,
+        15,
+        "VIC",
+        "La Trobe"
+      ],
+      [
+        5,
+        16,
+        "VIC",
+        "Lalor"
+      ],
+      [
+        8,
+        15,
+        "VIC",
+        "Macnamara"
+      ],
+      [
+        4,
+        11,
+        "VIC",
+        "Mallee"
+      ],
+      [
+        5,
+        14,
+        "VIC",
+        "Maribyrnong"
+      ],
+      [
+        10,
+        13,
+        "VIC",
+        "McEwen"
+      ],
+      [
+        7,
+        15,
+        "VIC",
+        "Melbourne"
+      ],
+      [
+        7,
+        12,
+        "VIC",
+        "Menzies"
+      ],
+      [
+        11,
+        14,
+        "VIC",
+        "Monash"
+      ],
+      [
+        5,
+        11,
+        "VIC",
+        "Nicholls"
+      ],
+      [
+        7,
+        11,
+        "VIC",
+        "Scullin"
+      ],
+      [
+        5,
+        12,
+        "VIC",
+        "Wannon"
+      ],
+      [
+        6,
+        14,
+        "VIC",
+        "Wills"
+      ],
+      [
+        0,
+        12,
+        "WA",
+        "Brand"
+      ],
+      [
+        2,
+        13,
+        "WA",
+        "Burt"
+      ],
+      [
+        0,
+        13,
+        "WA",
+        "Canning"
+      ],
+      [
+        1,
+        11,
+        "WA",
+        "Cowan"
+      ],
+      [
+        1,
+        10,
+        "WA",
+        "Curtin"
+      ],
+      [
+        2,
+        7,
+        "WA",
+        "Durack"
+      ],
+      [
+        0,
+        14,
+        "WA",
+        "Forrest"
+      ],
+      [
+        0,
+        11,
+        "WA",
+        "Fremantle"
+      ],
+      [
+        2,
+        9,
+        "WA",
+        "Hasluck"
+      ],
+      [
+        1,
+        9,
+        "WA",
+        "Moore"
+      ],
+      [
+        1,
+        14,
+        "WA",
+        "O'Connor"
+      ],
+      [
+        1,
+        8,
+        "WA",
+        "Pearce"
+      ],
+      [
+        2,
+        11,
+        "WA",
+        "Perth"
+      ],
+      [
+        1,
+        7,
+        "WA",
+        "Stirling"
+      ],
+      [
+        1,
+        12,
+        "WA",
+        "Swan"
+      ],
+      [
+        1,
+        13,
+        "WA",
+        "Tangney"
+      ]
     ]
   },
   "2022-FED": {
     "label": "2022 Federal",
     "seatCount": 151,
     "grid": [
-      [ 9, 11, "ACT", "Bean"],
-      [10, 11, "ACT", "Canberra"],
-      [ 9, 10, "ACT", "Fenner"],
-      [11, 10, "NSW", "Banks"],
-      [11, 11, "NSW", "Barton"],
-      [10,  7, "NSW", "Bennelong"],
-      [ 8,  7, "NSW", "Berowra"],
-      [11,  9, "NSW", "Blaxland"],
-      [12,  7, "NSW", "Bradfield"],
-      [ 4,  7, "NSW", "Calare"],
-      [ 9,  8, "NSW", "Chifley"],
-      [ 9,  9, "NSW", "Cook"],
-      [ 5,  6, "NSW", "Cowper"],
-      [ 7,  9, "NSW", "Cunningham"],
-      [10,  6, "NSW", "Dobell"],
-      [ 6,  8, "NSW", "Eden-Monaro"],
-      [ 4,  9, "NSW", "Farrer"],
-      [10,  8, "NSW", "Fowler"],
-      [ 6,  9, "NSW", "Gilmore"],
-      [12,  9, "NSW", "Grayndler"],
-      [11,  8, "NSW", "Greenway"],
-      [10, 10, "NSW", "Hughes"],
-      [ 5,  9, "NSW", "Hume"],
-      [12,  6, "NSW", "Hunter"],
-      [12, 12, "NSW", "Kingsford Smith"],
-      [ 7,  6, "NSW", "Lindsay"],
-      [ 6,  6, "NSW", "Lyne"],
-      [ 8,  8, "NSW", "Macarthur"],
-      [ 9,  7, "NSW", "Mackellar"],
-      [ 8,  6, "NSW", "Macquarie"],
-      [ 7,  7, "NSW", "McMahon"],
-      [11,  7, "NSW", "Mitchell"],
-      [ 5,  8, "NSW", "New England"],
-      [13,  7, "NSW", "Newcastle"],
-      [13,  9, "NSW", "North Sydney"],
-      [ 5,  7, "NSW", "Page"],
-      [ 4,  6, "NSW", "Parkes"],
-      [10,  9, "NSW", "Parramatta"],
-      [13,  6, "NSW", "Paterson"],
-      [12,  8, "NSW", "Reid"],
-      [ 6,  7, "NSW", "Richmond"],
-      [ 4,  8, "NSW", "Riverina"],
-      [ 9,  6, "NSW", "Robertson"],
-      [11,  6, "NSW", "Shortland"],
-      [13, 10, "NSW", "Sydney"],
-      [13,  8, "NSW", "Warringah"],
-      [12, 10, "NSW", "Watson"],
-      [12, 11, "NSW", "Wentworth"],
-      [ 8,  9, "NSW", "Werriwa"],
-      [ 7,  8, "NSW", "Whitlam"],
-      [ 3,  5, "NT", "Lingiari"],
-      [ 2,  5, "NT", "Solomon"],
-      [ 7,  5, "QLD", "Blair"],
-      [11,  2, "QLD", "Bonner"],
-      [12,  4, "QLD", "Bowman"],
-      [10,  3, "QLD", "Brisbane"],
-      [ 8,  2, "QLD", "Capricornia"],
-      [ 8,  1, "QLD", "Dawson"],
-      [ 8,  3, "QLD", "Dickson"],
-      [11,  4, "QLD", "Fadden"],
-      [10,  1, "QLD", "Fairfax"],
-      [10,  2, "QLD", "Fisher"],
-      [ 7,  3, "QLD", "Flynn"],
-      [10,  5, "QLD", "Forde"],
-      [10,  4, "QLD", "Griffith"],
-      [ 6,  5, "QLD", "Groom"],
-      [ 9,  1, "QLD", "Herbert"],
-      [ 6,  3, "QLD", "Hinkler"],
-      [ 6,  4, "QLD", "Kennedy"],
-      [10,  0, "QLD", "Leichhardt"],
-      [11,  3, "QLD", "Lilley"],
-      [ 9,  2, "QLD", "Longman"],
-      [ 5,  5, "QLD", "Maranoa"],
-      [12,  5, "QLD", "McPherson"],
-      [11,  5, "QLD", "Moncrieff"],
-      [ 9,  4, "QLD", "Moreton"],
-      [ 8,  5, "QLD", "Oxley"],
-      [ 9,  3, "QLD", "Petrie"],
-      [ 8,  4, "QLD", "Rankin"],
-      [ 9,  5, "QLD", "Ryan"],
-      [ 9,  0, "QLD", "Wide Bay"],
-      [ 7,  4, "QLD", "Wright"],
-      [ 3, 10, "SA", "Adelaide"],
-      [ 2,  7, "SA", "Barker"],
-      [ 3,  9, "SA", "Boothby"],
-      [ 3,  6, "SA", "Grey"],
-      [ 2,  9, "SA", "Hindmarsh"],
-      [ 3, 11, "SA", "Kingston"],
-      [ 3,  8, "SA", "Makin"],
-      [ 3, 12, "SA", "Mayo"],
-      [ 3,  7, "SA", "Spence"],
-      [ 2, 11, "SA", "Sturt"],
-      [ 9, 17, "TAS", "Bass"],
-      [ 7, 17, "TAS", "Braddon"],
-      [ 9, 18, "TAS", "Clark"],
-      [ 8, 18, "TAS", "Franklin"],
-      [ 8, 17, "TAS", "Lyons"],
-      [ 9, 12, "VIC", "Aston"],
-      [ 5, 14, "VIC", "Ballarat"],
-      [ 4, 11, "VIC", "Bendigo"],
-      [ 9, 13, "VIC", "Bruce"],
-      [ 6, 10, "VIC", "Calwell"],
-      [10, 13, "VIC", "Casey"],
-      [ 7, 13, "VIC", "Chisholm"],
-      [ 8, 12, "VIC", "Cooper"],
-      [ 5, 15, "VIC", "Corangamite"],
-      [ 4, 12, "VIC", "Corio"],
-      [ 8, 11, "VIC", "Deakin"],
-      [ 9, 15, "VIC", "Dunkley"],
-      [10, 15, "VIC", "Flinders"],
-      [ 6, 12, "VIC", "Fraser"],
-      [ 6, 15, "VIC", "Gellibrand"],
-      [11, 12, "VIC", "Gippsland"],
-      [ 8, 15, "VIC", "Goldstein"],
-      [ 5, 11, "VIC", "Gorton"],
-      [ 5, 13, "VIC", "Hawke"],
-      [ 8, 14, "VIC", "Higgins"],
-      [10, 14, "VIC", "Holt"],
-      [ 8, 13, "VIC", "Hotham"],
-      [ 8, 10, "VIC", "Indi"],
-      [ 9, 14, "VIC", "Isaacs"],
-      [ 6, 11, "VIC", "Jagajaga"],
-      [ 6, 13, "VIC", "Kooyong"],
-      [11, 14, "VIC", "La Trobe"],
-      [ 5, 12, "VIC", "Lalor"],
-      [ 7, 15, "VIC", "Macnamara"],
-      [ 4, 10, "VIC", "Mallee"],
-      [ 6, 14, "VIC", "Maribyrnong"],
-      [10, 12, "VIC", "McEwen"],
-      [ 7, 14, "VIC", "Melbourne"],
-      [ 7, 11, "VIC", "Menzies"],
-      [11, 13, "VIC", "Monash"],
-      [ 5, 10, "VIC", "Nicholls"],
-      [ 7, 10, "VIC", "Scullin"],
-      [ 4, 13, "VIC", "Wannon"],
-      [ 7, 12, "VIC", "Wills"],
-      [ 0, 11, "WA", "Brand"],
-      [ 2, 12, "WA", "Burt"],
-      [ 1, 12, "WA", "Canning"],
-      [ 1,  9, "WA", "Cowan"],
-      [ 0,  9, "WA", "Curtin"],
-      [ 2,  6, "WA", "Durack"],
-      [ 0, 13, "WA", "Forrest"],
-      [ 0, 10, "WA", "Fremantle"],
-      [ 2,  8, "WA", "Hasluck"],
-      [ 1,  8, "WA", "Moore"],
-      [ 1, 13, "WA", "O'Connor"],
-      [ 1,  7, "WA", "Pearce"],
-      [ 1, 10, "WA", "Perth"],
-      [ 2, 10, "WA", "Swan"],
-      [ 1, 11, "WA", "Tangney"]
+      [
+        9,
+        12,
+        "ACT",
+        "Bean"
+      ],
+      [
+        10,
+        12,
+        "ACT",
+        "Canberra"
+      ],
+      [
+        9,
+        11,
+        "ACT",
+        "Fenner"
+      ],
+      [
+        8,
+        10,
+        "NSW",
+        "Banks"
+      ],
+      [
+        9,
+        10,
+        "NSW",
+        "Barton"
+      ],
+      [
+        11,
+        8,
+        "NSW",
+        "Bennelong"
+      ],
+      [
+        10,
+        8,
+        "NSW",
+        "Berowra"
+      ],
+      [
+        10,
+        9,
+        "NSW",
+        "Blaxland"
+      ],
+      [
+        12,
+        8,
+        "NSW",
+        "Bradfield"
+      ],
+      [
+        5,
+        8,
+        "NSW",
+        "Calare"
+      ],
+      [
+        7,
+        8,
+        "NSW",
+        "Chifley"
+      ],
+      [
+        11,
+        11,
+        "NSW",
+        "Cook"
+      ],
+      [
+        11,
+        7,
+        "NSW",
+        "Cowper"
+      ],
+      [
+        12,
+        11,
+        "NSW",
+        "Cunningham"
+      ],
+      [
+        7,
+        7,
+        "NSW",
+        "Dobell"
+      ],
+      [
+        12,
+        13,
+        "NSW",
+        "Eden-Monaro"
+      ],
+      [
+        4,
+        9,
+        "NSW",
+        "Farrer"
+      ],
+      [
+        8,
+        9,
+        "NSW",
+        "Fowler"
+      ],
+      [
+        12,
+        12,
+        "NSW",
+        "Gilmore"
+      ],
+      [
+        10,
+        10,
+        "NSW",
+        "Grayndler"
+      ],
+      [
+        7,
+        9,
+        "NSW",
+        "Greenway"
+      ],
+      [
+        10,
+        11,
+        "NSW",
+        "Hughes"
+      ],
+      [
+        5,
+        10,
+        "NSW",
+        "Hume"
+      ],
+      [
+        5,
+        7,
+        "NSW",
+        "Hunter"
+      ],
+      [
+        13,
+        11,
+        "NSW",
+        "Kingsford Smith"
+      ],
+      [
+        5,
+        9,
+        "NSW",
+        "Lindsay"
+      ],
+      [
+        10,
+        7,
+        "NSW",
+        "Lyne"
+      ],
+      [
+        6,
+        10,
+        "NSW",
+        "Macarthur"
+      ],
+      [
+        13,
+        8,
+        "NSW",
+        "Mackellar"
+      ],
+      [
+        6,
+        8,
+        "NSW",
+        "Macquarie"
+      ],
+      [
+        6,
+        9,
+        "NSW",
+        "McMahon"
+      ],
+      [
+        8,
+        8,
+        "NSW",
+        "Mitchell"
+      ],
+      [
+        4,
+        7,
+        "NSW",
+        "New England"
+      ],
+      [
+        9,
+        7,
+        "NSW",
+        "Newcastle"
+      ],
+      [
+        13,
+        10,
+        "NSW",
+        "North Sydney"
+      ],
+      [
+        12,
+        7,
+        "NSW",
+        "Page"
+      ],
+      [
+        4,
+        8,
+        "NSW",
+        "Parkes"
+      ],
+      [
+        9,
+        9,
+        "NSW",
+        "Parramatta"
+      ],
+      [
+        6,
+        7,
+        "NSW",
+        "Paterson"
+      ],
+      [
+        12,
+        9,
+        "NSW",
+        "Reid"
+      ],
+      [
+        13,
+        7,
+        "NSW",
+        "Richmond"
+      ],
+      [
+        4,
+        10,
+        "NSW",
+        "Riverina"
+      ],
+      [
+        9,
+        8,
+        "NSW",
+        "Robertson"
+      ],
+      [
+        8,
+        7,
+        "NSW",
+        "Shortland"
+      ],
+      [
+        11,
+        10,
+        "NSW",
+        "Sydney"
+      ],
+      [
+        13,
+        9,
+        "NSW",
+        "Warringah"
+      ],
+      [
+        11,
+        9,
+        "NSW",
+        "Watson"
+      ],
+      [
+        12,
+        10,
+        "NSW",
+        "Wentworth"
+      ],
+      [
+        7,
+        10,
+        "NSW",
+        "Werriwa"
+      ],
+      [
+        11,
+        12,
+        "NSW",
+        "Whitlam"
+      ],
+      [
+        4,
+        6,
+        "NT",
+        "Lingiari"
+      ],
+      [
+        3,
+        6,
+        "NT",
+        "Solomon"
+      ],
+      [
+        8,
+        4,
+        "QLD",
+        "Blair"
+      ],
+      [
+        12,
+        4,
+        "QLD",
+        "Bonner"
+      ],
+      [
+        12,
+        5,
+        "QLD",
+        "Bowman"
+      ],
+      [
+        10,
+        5,
+        "QLD",
+        "Brisbane"
+      ],
+      [
+        9,
+        2,
+        "QLD",
+        "Capricornia"
+      ],
+      [
+        10,
+        1,
+        "QLD",
+        "Dawson"
+      ],
+      [
+        9,
+        4,
+        "QLD",
+        "Dickson"
+      ],
+      [
+        11,
+        6,
+        "QLD",
+        "Fadden"
+      ],
+      [
+        11,
+        2,
+        "QLD",
+        "Fairfax"
+      ],
+      [
+        11,
+        3,
+        "QLD",
+        "Fisher"
+      ],
+      [
+        8,
+        3,
+        "QLD",
+        "Flynn"
+      ],
+      [
+        10,
+        6,
+        "QLD",
+        "Forde"
+      ],
+      [
+        11,
+        5,
+        "QLD",
+        "Griffith"
+      ],
+      [
+        7,
+        5,
+        "QLD",
+        "Groom"
+      ],
+      [
+        9,
+        1,
+        "QLD",
+        "Herbert"
+      ],
+      [
+        10,
+        2,
+        "QLD",
+        "Hinkler"
+      ],
+      [
+        6,
+        5,
+        "QLD",
+        "Kennedy"
+      ],
+      [
+        10,
+        0,
+        "QLD",
+        "Leichhardt"
+      ],
+      [
+        11,
+        4,
+        "QLD",
+        "Lilley"
+      ],
+      [
+        10,
+        3,
+        "QLD",
+        "Longman"
+      ],
+      [
+        6,
+        6,
+        "QLD",
+        "Maranoa"
+      ],
+      [
+        13,
+        6,
+        "QLD",
+        "McPherson"
+      ],
+      [
+        12,
+        6,
+        "QLD",
+        "Moncrieff"
+      ],
+      [
+        8,
+        5,
+        "QLD",
+        "Moreton"
+      ],
+      [
+        8,
+        6,
+        "QLD",
+        "Oxley"
+      ],
+      [
+        10,
+        4,
+        "QLD",
+        "Petrie"
+      ],
+      [
+        9,
+        6,
+        "QLD",
+        "Rankin"
+      ],
+      [
+        9,
+        5,
+        "QLD",
+        "Ryan"
+      ],
+      [
+        9,
+        3,
+        "QLD",
+        "Wide Bay"
+      ],
+      [
+        7,
+        6,
+        "QLD",
+        "Wright"
+      ],
+      [
+        3,
+        11,
+        "SA",
+        "Adelaide"
+      ],
+      [
+        3,
+        8,
+        "SA",
+        "Barker"
+      ],
+      [
+        3,
+        12,
+        "SA",
+        "Boothby"
+      ],
+      [
+        3,
+        7,
+        "SA",
+        "Grey"
+      ],
+      [
+        2,
+        10,
+        "SA",
+        "Hindmarsh"
+      ],
+      [
+        2,
+        12,
+        "SA",
+        "Kingston"
+      ],
+      [
+        3,
+        9,
+        "SA",
+        "Makin"
+      ],
+      [
+        3,
+        13,
+        "SA",
+        "Mayo"
+      ],
+      [
+        2,
+        8,
+        "SA",
+        "Spence"
+      ],
+      [
+        3,
+        10,
+        "SA",
+        "Sturt"
+      ],
+      [
+        9,
+        18,
+        "TAS",
+        "Bass"
+      ],
+      [
+        7,
+        18,
+        "TAS",
+        "Braddon"
+      ],
+      [
+        7,
+        19,
+        "TAS",
+        "Clark"
+      ],
+      [
+        8,
+        19,
+        "TAS",
+        "Franklin"
+      ],
+      [
+        8,
+        18,
+        "TAS",
+        "Lyons"
+      ],
+      [
+        9,
+        13,
+        "VIC",
+        "Aston"
+      ],
+      [
+        5,
+        13,
+        "VIC",
+        "Ballarat"
+      ],
+      [
+        4,
+        12,
+        "VIC",
+        "Bendigo"
+      ],
+      [
+        9,
+        14,
+        "VIC",
+        "Bruce"
+      ],
+      [
+        6,
+        11,
+        "VIC",
+        "Calwell"
+      ],
+      [
+        10,
+        14,
+        "VIC",
+        "Casey"
+      ],
+      [
+        8,
+        13,
+        "VIC",
+        "Chisholm"
+      ],
+      [
+        7,
+        13,
+        "VIC",
+        "Cooper"
+      ],
+      [
+        4,
+        14,
+        "VIC",
+        "Corangamite"
+      ],
+      [
+        5,
+        15,
+        "VIC",
+        "Corio"
+      ],
+      [
+        8,
+        12,
+        "VIC",
+        "Deakin"
+      ],
+      [
+        9,
+        16,
+        "VIC",
+        "Dunkley"
+      ],
+      [
+        10,
+        16,
+        "VIC",
+        "Flinders"
+      ],
+      [
+        6,
+        15,
+        "VIC",
+        "Fraser"
+      ],
+      [
+        6,
+        16,
+        "VIC",
+        "Gellibrand"
+      ],
+      [
+        11,
+        13,
+        "VIC",
+        "Gippsland"
+      ],
+      [
+        8,
+        16,
+        "VIC",
+        "Goldstein"
+      ],
+      [
+        6,
+        13,
+        "VIC",
+        "Gorton"
+      ],
+      [
+        5,
+        12,
+        "VIC",
+        "Hawke"
+      ],
+      [
+        7,
+        16,
+        "VIC",
+        "Higgins"
+      ],
+      [
+        10,
+        15,
+        "VIC",
+        "Holt"
+      ],
+      [
+        8,
+        14,
+        "VIC",
+        "Hotham"
+      ],
+      [
+        8,
+        11,
+        "VIC",
+        "Indi"
+      ],
+      [
+        9,
+        15,
+        "VIC",
+        "Isaacs"
+      ],
+      [
+        6,
+        12,
+        "VIC",
+        "Jagajaga"
+      ],
+      [
+        7,
+        14,
+        "VIC",
+        "Kooyong"
+      ],
+      [
+        11,
+        15,
+        "VIC",
+        "La Trobe"
+      ],
+      [
+        5,
+        16,
+        "VIC",
+        "Lalor"
+      ],
+      [
+        8,
+        15,
+        "VIC",
+        "Macnamara"
+      ],
+      [
+        4,
+        11,
+        "VIC",
+        "Mallee"
+      ],
+      [
+        5,
+        14,
+        "VIC",
+        "Maribyrnong"
+      ],
+      [
+        10,
+        13,
+        "VIC",
+        "McEwen"
+      ],
+      [
+        7,
+        15,
+        "VIC",
+        "Melbourne"
+      ],
+      [
+        7,
+        12,
+        "VIC",
+        "Menzies"
+      ],
+      [
+        11,
+        14,
+        "VIC",
+        "Monash"
+      ],
+      [
+        5,
+        11,
+        "VIC",
+        "Nicholls"
+      ],
+      [
+        7,
+        11,
+        "VIC",
+        "Scullin"
+      ],
+      [
+        4,
+        13,
+        "VIC",
+        "Wannon"
+      ],
+      [
+        6,
+        14,
+        "VIC",
+        "Wills"
+      ],
+      [
+        0,
+        12,
+        "WA",
+        "Brand"
+      ],
+      [
+        2,
+        13,
+        "WA",
+        "Burt"
+      ],
+      [
+        0,
+        13,
+        "WA",
+        "Canning"
+      ],
+      [
+        1,
+        11,
+        "WA",
+        "Cowan"
+      ],
+      [
+        1,
+        10,
+        "WA",
+        "Curtin"
+      ],
+      [
+        2,
+        7,
+        "WA",
+        "Durack"
+      ],
+      [
+        0,
+        14,
+        "WA",
+        "Forrest"
+      ],
+      [
+        0,
+        11,
+        "WA",
+        "Fremantle"
+      ],
+      [
+        2,
+        9,
+        "WA",
+        "Hasluck"
+      ],
+      [
+        1,
+        9,
+        "WA",
+        "Moore"
+      ],
+      [
+        1,
+        14,
+        "WA",
+        "O'Connor"
+      ],
+      [
+        1,
+        8,
+        "WA",
+        "Pearce"
+      ],
+      [
+        2,
+        11,
+        "WA",
+        "Perth"
+      ],
+      [
+        1,
+        12,
+        "WA",
+        "Swan"
+      ],
+      [
+        1,
+        13,
+        "WA",
+        "Tangney"
+      ]
     ]
   },
   "2025-FED": {
     "label": "2025 Federal",
     "seatCount": 150,
     "grid": [
-      [ 9, 11, "ACT", "Bean"],
-      [10, 11, "ACT", "Canberra"],
-      [ 9, 10, "ACT", "Fenner"],
-      [11, 10, "NSW", "Banks"],
-      [11, 11, "NSW", "Barton"],
-      [10,  7, "NSW", "Bennelong"],
-      [ 8,  7, "NSW", "Berowra"],
-      [11,  9, "NSW", "Blaxland"],
-      [12,  7, "NSW", "Bradfield"],
-      [ 4,  7, "NSW", "Calare"],
-      [ 9,  8, "NSW", "Chifley"],
-      [ 9,  9, "NSW", "Cook"],
-      [ 5,  6, "NSW", "Cowper"],
-      [ 7,  9, "NSW", "Cunningham"],
-      [10,  6, "NSW", "Dobell"],
-      [ 6,  8, "NSW", "Eden-Monaro"],
-      [ 4,  9, "NSW", "Farrer"],
-      [10,  8, "NSW", "Fowler"],
-      [ 6,  9, "NSW", "Gilmore"],
-      [12,  9, "NSW", "Grayndler"],
-      [11,  8, "NSW", "Greenway"],
-      [10, 10, "NSW", "Hughes"],
-      [ 5,  9, "NSW", "Hume"],
-      [12,  6, "NSW", "Hunter"],
-      [12, 12, "NSW", "Kingsford Smith"],
-      [ 7,  6, "NSW", "Lindsay"],
-      [ 6,  6, "NSW", "Lyne"],
-      [ 8,  8, "NSW", "Macarthur"],
-      [ 9,  7, "NSW", "Mackellar"],
-      [ 8,  6, "NSW", "Macquarie"],
-      [ 7,  7, "NSW", "McMahon"],
-      [11,  7, "NSW", "Mitchell"],
-      [ 5,  8, "NSW", "New England"],
-      [13,  7, "NSW", "Newcastle"],
-      [ 5,  7, "NSW", "Page"],
-      [ 4,  6, "NSW", "Parkes"],
-      [10,  9, "NSW", "Parramatta"],
-      [13,  6, "NSW", "Paterson"],
-      [12,  8, "NSW", "Reid"],
-      [ 6,  7, "NSW", "Richmond"],
-      [ 4,  8, "NSW", "Riverina"],
-      [ 9,  6, "NSW", "Robertson"],
-      [11,  6, "NSW", "Shortland"],
-      [13, 10, "NSW", "Sydney"],
-      [13,  8, "NSW", "Warringah"],
-      [12, 10, "NSW", "Watson"],
-      [12, 11, "NSW", "Wentworth"],
-      [ 8,  9, "NSW", "Werriwa"],
-      [ 7,  8, "NSW", "Whitlam"],
-      [ 3,  5, "NT", "Lingiari"],
-      [ 2,  5, "NT", "Solomon"],
-      [ 7,  5, "QLD", "Blair"],
-      [11,  2, "QLD", "Bonner"],
-      [12,  4, "QLD", "Bowman"],
-      [10,  3, "QLD", "Brisbane"],
-      [ 8,  2, "QLD", "Capricornia"],
-      [ 8,  1, "QLD", "Dawson"],
-      [ 8,  3, "QLD", "Dickson"],
-      [11,  4, "QLD", "Fadden"],
-      [10,  1, "QLD", "Fairfax"],
-      [10,  2, "QLD", "Fisher"],
-      [ 7,  3, "QLD", "Flynn"],
-      [10,  5, "QLD", "Forde"],
-      [10,  4, "QLD", "Griffith"],
-      [ 6,  5, "QLD", "Groom"],
-      [ 9,  1, "QLD", "Herbert"],
-      [ 6,  3, "QLD", "Hinkler"],
-      [ 6,  4, "QLD", "Kennedy"],
-      [10,  0, "QLD", "Leichhardt"],
-      [11,  3, "QLD", "Lilley"],
-      [ 9,  2, "QLD", "Longman"],
-      [ 5,  5, "QLD", "Maranoa"],
-      [12,  5, "QLD", "McPherson"],
-      [11,  5, "QLD", "Moncrieff"],
-      [ 9,  4, "QLD", "Moreton"],
-      [ 8,  5, "QLD", "Oxley"],
-      [ 9,  3, "QLD", "Petrie"],
-      [ 8,  4, "QLD", "Rankin"],
-      [ 9,  5, "QLD", "Ryan"],
-      [ 9,  0, "QLD", "Wide Bay"],
-      [ 7,  4, "QLD", "Wright"],
-      [ 3, 10, "SA", "Adelaide"],
-      [ 2,  7, "SA", "Barker"],
-      [ 3,  9, "SA", "Boothby"],
-      [ 3,  6, "SA", "Grey"],
-      [ 2,  9, "SA", "Hindmarsh"],
-      [ 3, 11, "SA", "Kingston"],
-      [ 3,  8, "SA", "Makin"],
-      [ 3, 12, "SA", "Mayo"],
-      [ 3,  7, "SA", "Spence"],
-      [ 2, 11, "SA", "Sturt"],
-      [ 9, 17, "TAS", "Bass"],
-      [ 7, 17, "TAS", "Braddon"],
-      [ 9, 18, "TAS", "Clark"],
-      [ 8, 18, "TAS", "Franklin"],
-      [ 8, 17, "TAS", "Lyons"],
-      [ 9, 12, "VIC", "Aston"],
-      [ 5, 14, "VIC", "Ballarat"],
-      [ 4, 11, "VIC", "Bendigo"],
-      [ 9, 13, "VIC", "Bruce"],
-      [ 6, 10, "VIC", "Calwell"],
-      [10, 13, "VIC", "Casey"],
-      [ 7, 13, "VIC", "Chisholm"],
-      [ 8, 12, "VIC", "Cooper"],
-      [ 5, 15, "VIC", "Corangamite"],
-      [ 4, 12, "VIC", "Corio"],
-      [ 8, 11, "VIC", "Deakin"],
-      [ 9, 15, "VIC", "Dunkley"],
-      [10, 15, "VIC", "Flinders"],
-      [ 6, 12, "VIC", "Fraser"],
-      [ 6, 15, "VIC", "Gellibrand"],
-      [11, 12, "VIC", "Gippsland"],
-      [ 8, 14, "VIC", "Goldstein"],
-      [ 5, 11, "VIC", "Gorton"],
-      [ 5, 13, "VIC", "Hawke"],
-      [10, 14, "VIC", "Holt"],
-      [ 8, 13, "VIC", "Hotham"],
-      [ 8, 10, "VIC", "Indi"],
-      [ 9, 14, "VIC", "Isaacs"],
-      [ 6, 11, "VIC", "Jagajaga"],
-      [ 6, 13, "VIC", "Kooyong"],
-      [11, 14, "VIC", "La Trobe"],
-      [ 5, 12, "VIC", "Lalor"],
-      [ 7, 15, "VIC", "Macnamara"],
-      [ 4, 10, "VIC", "Mallee"],
-      [ 6, 14, "VIC", "Maribyrnong"],
-      [10, 12, "VIC", "McEwen"],
-      [ 7, 14, "VIC", "Melbourne"],
-      [ 7, 11, "VIC", "Menzies"],
-      [11, 13, "VIC", "Monash"],
-      [ 5, 10, "VIC", "Nicholls"],
-      [ 7, 10, "VIC", "Scullin"],
-      [ 4, 13, "VIC", "Wannon"],
-      [ 7, 12, "VIC", "Wills"],
-      [ 0, 11, "WA", "Brand"],
-      [ 1,  8, "WA", "Bullwinkel"],
-      [ 2, 12, "WA", "Burt"],
-      [ 1, 12, "WA", "Canning"],
-      [ 1,  9, "WA", "Cowan"],
-      [ 0,  9, "WA", "Curtin"],
-      [ 2,  6, "WA", "Durack"],
-      [ 0, 13, "WA", "Forrest"],
-      [ 0, 10, "WA", "Fremantle"],
-      [ 2,  8, "WA", "Hasluck"],
-      [ 0,  8, "WA", "Moore"],
-      [ 1, 13, "WA", "O'Connor"],
-      [ 1,  7, "WA", "Pearce"],
-      [ 1, 10, "WA", "Perth"],
-      [ 2, 10, "WA", "Swan"],
-      [ 1, 11, "WA", "Tangney"]
+      [
+        9,
+        12,
+        "ACT",
+        "Bean"
+      ],
+      [
+        10,
+        12,
+        "ACT",
+        "Canberra"
+      ],
+      [
+        9,
+        11,
+        "ACT",
+        "Fenner"
+      ],
+      [
+        8,
+        10,
+        "NSW",
+        "Banks"
+      ],
+      [
+        9,
+        10,
+        "NSW",
+        "Barton"
+      ],
+      [
+        11,
+        8,
+        "NSW",
+        "Bennelong"
+      ],
+      [
+        10,
+        8,
+        "NSW",
+        "Berowra"
+      ],
+      [
+        10,
+        9,
+        "NSW",
+        "Blaxland"
+      ],
+      [
+        12,
+        8,
+        "NSW",
+        "Bradfield"
+      ],
+      [
+        5,
+        8,
+        "NSW",
+        "Calare"
+      ],
+      [
+        7,
+        8,
+        "NSW",
+        "Chifley"
+      ],
+      [
+        11,
+        11,
+        "NSW",
+        "Cook"
+      ],
+      [
+        11,
+        7,
+        "NSW",
+        "Cowper"
+      ],
+      [
+        12,
+        11,
+        "NSW",
+        "Cunningham"
+      ],
+      [
+        7,
+        7,
+        "NSW",
+        "Dobell"
+      ],
+      [
+        12,
+        13,
+        "NSW",
+        "Eden-Monaro"
+      ],
+      [
+        4,
+        9,
+        "NSW",
+        "Farrer"
+      ],
+      [
+        8,
+        9,
+        "NSW",
+        "Fowler"
+      ],
+      [
+        12,
+        12,
+        "NSW",
+        "Gilmore"
+      ],
+      [
+        10,
+        10,
+        "NSW",
+        "Grayndler"
+      ],
+      [
+        7,
+        9,
+        "NSW",
+        "Greenway"
+      ],
+      [
+        10,
+        11,
+        "NSW",
+        "Hughes"
+      ],
+      [
+        5,
+        10,
+        "NSW",
+        "Hume"
+      ],
+      [
+        5,
+        7,
+        "NSW",
+        "Hunter"
+      ],
+      [
+        13,
+        11,
+        "NSW",
+        "Kingsford Smith"
+      ],
+      [
+        5,
+        9,
+        "NSW",
+        "Lindsay"
+      ],
+      [
+        10,
+        7,
+        "NSW",
+        "Lyne"
+      ],
+      [
+        6,
+        10,
+        "NSW",
+        "Macarthur"
+      ],
+      [
+        13,
+        8,
+        "NSW",
+        "Mackellar"
+      ],
+      [
+        6,
+        8,
+        "NSW",
+        "Macquarie"
+      ],
+      [
+        6,
+        9,
+        "NSW",
+        "McMahon"
+      ],
+      [
+        8,
+        8,
+        "NSW",
+        "Mitchell"
+      ],
+      [
+        4,
+        7,
+        "NSW",
+        "New England"
+      ],
+      [
+        9,
+        7,
+        "NSW",
+        "Newcastle"
+      ],
+      [
+        12,
+        7,
+        "NSW",
+        "Page"
+      ],
+      [
+        4,
+        8,
+        "NSW",
+        "Parkes"
+      ],
+      [
+        9,
+        9,
+        "NSW",
+        "Parramatta"
+      ],
+      [
+        6,
+        7,
+        "NSW",
+        "Paterson"
+      ],
+      [
+        12,
+        9,
+        "NSW",
+        "Reid"
+      ],
+      [
+        13,
+        7,
+        "NSW",
+        "Richmond"
+      ],
+      [
+        4,
+        10,
+        "NSW",
+        "Riverina"
+      ],
+      [
+        9,
+        8,
+        "NSW",
+        "Robertson"
+      ],
+      [
+        8,
+        7,
+        "NSW",
+        "Shortland"
+      ],
+      [
+        11,
+        10,
+        "NSW",
+        "Sydney"
+      ],
+      [
+        13,
+        9,
+        "NSW",
+        "Warringah"
+      ],
+      [
+        11,
+        9,
+        "NSW",
+        "Watson"
+      ],
+      [
+        12,
+        10,
+        "NSW",
+        "Wentworth"
+      ],
+      [
+        7,
+        10,
+        "NSW",
+        "Werriwa"
+      ],
+      [
+        11,
+        12,
+        "NSW",
+        "Whitlam"
+      ],
+      [
+        4,
+        6,
+        "NT",
+        "Lingiari"
+      ],
+      [
+        3,
+        6,
+        "NT",
+        "Solomon"
+      ],
+      [
+        8,
+        4,
+        "QLD",
+        "Blair"
+      ],
+      [
+        12,
+        4,
+        "QLD",
+        "Bonner"
+      ],
+      [
+        12,
+        5,
+        "QLD",
+        "Bowman"
+      ],
+      [
+        10,
+        5,
+        "QLD",
+        "Brisbane"
+      ],
+      [
+        9,
+        2,
+        "QLD",
+        "Capricornia"
+      ],
+      [
+        10,
+        1,
+        "QLD",
+        "Dawson"
+      ],
+      [
+        9,
+        4,
+        "QLD",
+        "Dickson"
+      ],
+      [
+        11,
+        6,
+        "QLD",
+        "Fadden"
+      ],
+      [
+        11,
+        2,
+        "QLD",
+        "Fairfax"
+      ],
+      [
+        11,
+        3,
+        "QLD",
+        "Fisher"
+      ],
+      [
+        8,
+        3,
+        "QLD",
+        "Flynn"
+      ],
+      [
+        10,
+        6,
+        "QLD",
+        "Forde"
+      ],
+      [
+        11,
+        5,
+        "QLD",
+        "Griffith"
+      ],
+      [
+        7,
+        5,
+        "QLD",
+        "Groom"
+      ],
+      [
+        9,
+        1,
+        "QLD",
+        "Herbert"
+      ],
+      [
+        10,
+        2,
+        "QLD",
+        "Hinkler"
+      ],
+      [
+        6,
+        5,
+        "QLD",
+        "Kennedy"
+      ],
+      [
+        10,
+        0,
+        "QLD",
+        "Leichhardt"
+      ],
+      [
+        11,
+        4,
+        "QLD",
+        "Lilley"
+      ],
+      [
+        10,
+        3,
+        "QLD",
+        "Longman"
+      ],
+      [
+        6,
+        6,
+        "QLD",
+        "Maranoa"
+      ],
+      [
+        13,
+        6,
+        "QLD",
+        "McPherson"
+      ],
+      [
+        12,
+        6,
+        "QLD",
+        "Moncrieff"
+      ],
+      [
+        8,
+        5,
+        "QLD",
+        "Moreton"
+      ],
+      [
+        8,
+        6,
+        "QLD",
+        "Oxley"
+      ],
+      [
+        10,
+        4,
+        "QLD",
+        "Petrie"
+      ],
+      [
+        9,
+        6,
+        "QLD",
+        "Rankin"
+      ],
+      [
+        9,
+        5,
+        "QLD",
+        "Ryan"
+      ],
+      [
+        9,
+        3,
+        "QLD",
+        "Wide Bay"
+      ],
+      [
+        7,
+        6,
+        "QLD",
+        "Wright"
+      ],
+      [
+        3,
+        11,
+        "SA",
+        "Adelaide"
+      ],
+      [
+        3,
+        8,
+        "SA",
+        "Barker"
+      ],
+      [
+        3,
+        12,
+        "SA",
+        "Boothby"
+      ],
+      [
+        3,
+        7,
+        "SA",
+        "Grey"
+      ],
+      [
+        2,
+        10,
+        "SA",
+        "Hindmarsh"
+      ],
+      [
+        2,
+        12,
+        "SA",
+        "Kingston"
+      ],
+      [
+        3,
+        9,
+        "SA",
+        "Makin"
+      ],
+      [
+        3,
+        13,
+        "SA",
+        "Mayo"
+      ],
+      [
+        2,
+        8,
+        "SA",
+        "Spence"
+      ],
+      [
+        3,
+        10,
+        "SA",
+        "Sturt"
+      ],
+      [
+        9,
+        18,
+        "TAS",
+        "Bass"
+      ],
+      [
+        7,
+        18,
+        "TAS",
+        "Braddon"
+      ],
+      [
+        7,
+        19,
+        "TAS",
+        "Clark"
+      ],
+      [
+        8,
+        19,
+        "TAS",
+        "Franklin"
+      ],
+      [
+        8,
+        18,
+        "TAS",
+        "Lyons"
+      ],
+      [
+        9,
+        13,
+        "VIC",
+        "Aston"
+      ],
+      [
+        5,
+        13,
+        "VIC",
+        "Ballarat"
+      ],
+      [
+        4,
+        12,
+        "VIC",
+        "Bendigo"
+      ],
+      [
+        9,
+        14,
+        "VIC",
+        "Bruce"
+      ],
+      [
+        6,
+        11,
+        "VIC",
+        "Calwell"
+      ],
+      [
+        10,
+        14,
+        "VIC",
+        "Casey"
+      ],
+      [
+        8,
+        13,
+        "VIC",
+        "Chisholm"
+      ],
+      [
+        7,
+        13,
+        "VIC",
+        "Cooper"
+      ],
+      [
+        4,
+        14,
+        "VIC",
+        "Corangamite"
+      ],
+      [
+        5,
+        15,
+        "VIC",
+        "Corio"
+      ],
+      [
+        8,
+        12,
+        "VIC",
+        "Deakin"
+      ],
+      [
+        9,
+        16,
+        "VIC",
+        "Dunkley"
+      ],
+      [
+        10,
+        16,
+        "VIC",
+        "Flinders"
+      ],
+      [
+        6,
+        15,
+        "VIC",
+        "Fraser"
+      ],
+      [
+        6,
+        16,
+        "VIC",
+        "Gellibrand"
+      ],
+      [
+        11,
+        13,
+        "VIC",
+        "Gippsland"
+      ],
+      [
+        8,
+        16,
+        "VIC",
+        "Goldstein"
+      ],
+      [
+        6,
+        13,
+        "VIC",
+        "Gorton"
+      ],
+      [
+        5,
+        12,
+        "VIC",
+        "Hawke"
+      ],
+      [
+        10,
+        15,
+        "VIC",
+        "Holt"
+      ],
+      [
+        8,
+        14,
+        "VIC",
+        "Hotham"
+      ],
+      [
+        8,
+        11,
+        "VIC",
+        "Indi"
+      ],
+      [
+        9,
+        15,
+        "VIC",
+        "Isaacs"
+      ],
+      [
+        6,
+        12,
+        "VIC",
+        "Jagajaga"
+      ],
+      [
+        7,
+        14,
+        "VIC",
+        "Kooyong"
+      ],
+      [
+        11,
+        15,
+        "VIC",
+        "La Trobe"
+      ],
+      [
+        5,
+        16,
+        "VIC",
+        "Lalor"
+      ],
+      [
+        8,
+        15,
+        "VIC",
+        "Macnamara"
+      ],
+      [
+        4,
+        11,
+        "VIC",
+        "Mallee"
+      ],
+      [
+        5,
+        14,
+        "VIC",
+        "Maribyrnong"
+      ],
+      [
+        10,
+        13,
+        "VIC",
+        "McEwen"
+      ],
+      [
+        7,
+        15,
+        "VIC",
+        "Melbourne"
+      ],
+      [
+        7,
+        12,
+        "VIC",
+        "Menzies"
+      ],
+      [
+        11,
+        14,
+        "VIC",
+        "Monash"
+      ],
+      [
+        5,
+        11,
+        "VIC",
+        "Nicholls"
+      ],
+      [
+        7,
+        11,
+        "VIC",
+        "Scullin"
+      ],
+      [
+        4,
+        13,
+        "VIC",
+        "Wannon"
+      ],
+      [
+        6,
+        14,
+        "VIC",
+        "Wills"
+      ],
+      [
+        0,
+        12,
+        "WA",
+        "Brand"
+      ],
+      [
+        2,
+        11,
+        "WA",
+        "Bullwinkel"
+      ],
+      [
+        2,
+        13,
+        "WA",
+        "Burt"
+      ],
+      [
+        0,
+        13,
+        "WA",
+        "Canning"
+      ],
+      [
+        1,
+        10,
+        "WA",
+        "Cowan"
+      ],
+      [
+        0,
+        10,
+        "WA",
+        "Curtin"
+      ],
+      [
+        2,
+        7,
+        "WA",
+        "Durack"
+      ],
+      [
+        0,
+        14,
+        "WA",
+        "Forrest"
+      ],
+      [
+        0,
+        11,
+        "WA",
+        "Fremantle"
+      ],
+      [
+        2,
+        9,
+        "WA",
+        "Hasluck"
+      ],
+      [
+        1,
+        9,
+        "WA",
+        "Moore"
+      ],
+      [
+        1,
+        14,
+        "WA",
+        "O'Connor"
+      ],
+      [
+        1,
+        8,
+        "WA",
+        "Pearce"
+      ],
+      [
+        1,
+        11,
+        "WA",
+        "Perth"
+      ],
+      [
+        1,
+        12,
+        "WA",
+        "Swan"
+      ],
+      [
+        1,
+        13,
+        "WA",
+        "Tangney"
+      ]
     ]
   }
 }

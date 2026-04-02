@@ -4,7 +4,7 @@ Equal-area hex maps for Australian federal House of Representatives electorates,
 
 Each electorate is represented as a single hexagon on a unified grid. The layout approximates Australia's geography while giving every electorate exactly the same visual weight — unlike geographic maps where outback electorates dwarf inner-city ones.
 
-Inspired by the [ABC News federal election hex map](https://www.abc.net.au/news/elections/federal-redistribution-2024/), which pioneered the equal-area hex cartogram format for Australian elections.
+Based on the [ABC News federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results), which pioneered the equal-area hex cartogram format for Australian elections.
 
 ## Install
 
@@ -37,7 +37,7 @@ import { FED_2022, HEX_SIZE, hexPoints, computeStateBorders } from "auspol-hex-c
 const { electorates } = FED_2022; // 151 electorates
 
 for (const e of electorates) {
-  // e.name = "Kooyong", e.state = "VIC", e.col = 6, e.row = 13
+  // e.name = "Kooyong", e.state = "VIC", e.col = 7, e.row = 14
   // e.px, e.py = pre-computed pixel coordinates for SVG rendering
   const points = hexPoints(e.px, e.py, HEX_SIZE);
   // → SVG polygon points string
@@ -69,7 +69,7 @@ px = √3 × size × (col + 0.5 × (row & 1))
 py = 1.5 × size × row
 ```
 
-where `size = 14` pixels. Grid bounds: col 0–13, row 0–18.
+where `size = 14` pixels. Grid bounds: col 0–13, row 0–19.
 
 ## API reference
 
@@ -129,39 +129,39 @@ Import from `auspol-hex-cartogram/react`:
 
 | Election | Seats | Changes from previous |
 |----------|-------|-----------------------|
-| 2019 Federal | 151 | Baseline (derived backward from 2022) |
+| 2019 Federal | 151 | Derived backward from 2025 via 2022 |
 | 2022 Federal | 151 | +Hawke (VIC), −Stirling (WA) |
-| 2025 Federal | 150 | −North Sydney (NSW), −Higgins (VIC), +Bullwinkel (WA) |
+| 2025 Federal | 150 | Canonical baseline (matches ABC News) |
 
 ### Silhouette changes
 
-**2019 → 2022**: VIC gains cell `[5,13]` for Hawke. WA loses cell `[0,8]` (Stirling abolished). All 150 surviving electorates keep their positions.
+**2019 → 2022**: VIC gains cell `[5,12]` for Hawke (Wannon and Corangamite shift to fill it). WA loses cell `[1,7]` (Stirling abolished). 148 surviving electorates stay put; 2 forced moves.
 
-**2022 → 2025**: NSW loses `[13,9]` (North Sydney abolished). VIC loses `[8,15]` (Goldstein shifts to `[8,14]` to fill Higgins's vacated cell). WA gains `[0,8]` (Moore shifts from `[1,8]` to `[0,8]`; Bullwinkel takes `[1,8]`). 147 surviving electorates stay put; 2 forced moves.
+**2022 → 2025**: NSW loses `[13,10]` (North Sydney abolished). VIC loses `[7,16]` (Higgins abolished). WA gains `[2,11]` for Bullwinkel (Curtin, Cowan, and Perth shift to accommodate). 146 surviving electorates stay put; 3 forced moves.
 
 ## How the coordinates were derived
 
-### 2022: hand-crafted baseline
+### 2025: canonical baseline (from ABC News)
 
-The 2022 positions were manually placed to match the [ABC News equal-area election cartogram](https://www.abc.net.au/news/elections/federal-redistribution-2024/). Each electorate was positioned by hand on the hex grid to approximate its geographic location within Australia.
+The 2025 positions are taken directly from the [ABC News 2025 federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results) (`abcnews/elections-federal2025-lower-house` on GitHub). The ABC's per-state local coordinates are combined with their COUNTRY layout state offsets to produce a unified integer grid.
 
 This is the canonical reference layout. All other elections are derived from it.
 
-### 2019 and 2025: stability-first derivation
+### 2022 and 2019: stability-first derivation (backwards)
 
-When electorates are added or removed between elections, we use a **stability-first** approach:
+When electorates are added or removed between elections, we use a **stability-first** approach, working backwards from the 2025 baseline:
 
-1. Start from the 2022 baseline positions.
-2. **Abolished electorates**: remove the electorate and its cell from the silhouette (or free it for a neighbour).
-3. **New electorates**: place on a new cell added to the state's region, or on a cell vacated in step 2.
-4. **All surviving electorates keep their 2022 position.**
+1. Start from the 2025 baseline positions.
+2. **Abolished electorates** (seats that existed in the earlier election but not 2025): add them back on a new cell adjacent to their state's silhouette.
+3. **New electorates** (seats that exist in 2025 but not the earlier election): remove them and their cell.
+4. **Surviving electorates keep their position** unless a forced move is needed to avoid leaving a hole in the silhouette. Forced moves cascade from the hole to the nearest edge cell.
 
 This produces minimal visual disruption between elections — critical for comparing results across years.
 
 | Transition | Stayed | Moved | New | Removed |
 |------------|--------|-------|-----|---------|
-| 2019 → 2022 | 150 | **0** | 1 (Hawke) | 1 (Stirling) |
-| 2022 → 2025 | 147 | **2** | 1 (Bullwinkel) | 2 (Higgins, North Sydney) |
+| 2019 → 2022 | 148 | **2** | 1 (Hawke) | 1 (Stirling) |
+| 2022 → 2025 | 146 | **3** | 1 (Bullwinkel) | 2 (Higgins, North Sydney) |
 
 ## Why not the Hungarian algorithm?
 
@@ -194,9 +194,11 @@ This happens because the algorithm optimises each election in isolation. A tiny 
 
 The Hungarian algorithm remains useful for validation (checking the hand-crafted layout isn't wildly wrong) and for initial placement of new electorates. But for cross-election consistency, stability-first wins.
 
-## Differences from the ABC
+## Relationship to the ABC
 
-Our 2022 baseline was placed to match the ABC's hex map. To our knowledge, the coordinates are identical for the 2022 election. The ABC has not (to our knowledge) published hex maps for 2019 or 2025, so those are our own derivation using the stability-first method.
+Our 2025 baseline is taken directly from the ABC's hex map ([source](https://github.com/abcnews/elections-federal2025-lower-house)). The coordinates are identical for the 2025 election.
+
+The ABC also published a hex map for the [2022 election](https://www.abc.net.au/news/2022-05-20/federal-election-map-lying/101076016), but our 2022 layout differs because it is derived backwards from 2025 using stability-first (all surviving electorates keep their 2025 positions). The ABC has not published a hex map for 2019.
 
 ## Adding a new election
 
