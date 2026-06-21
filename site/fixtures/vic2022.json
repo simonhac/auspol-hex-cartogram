@@ -1,0 +1,1244 @@
+{
+  "parties": {
+    "alp": {
+      "label": "Labor",
+      "colour": "#d8232a",
+      "kind": "major"
+    },
+    "lib": {
+      "label": "Liberal",
+      "colour": "#1a4d8f",
+      "kind": "major"
+    },
+    "nat": {
+      "label": "Nationals",
+      "colour": "#0a6d3f",
+      "kind": "major"
+    },
+    "coa": {
+      "label": "Coalition",
+      "colour": "#1a4d8f",
+      "kind": "major"
+    },
+    "grn": {
+      "label": "Greens",
+      "colour": "#3f8a3f",
+      "kind": "minor"
+    },
+    "lcn": {
+      "label": "Legalise",
+      "colour": "#7bb661",
+      "kind": "minor"
+    },
+    "ajp": {
+      "label": "Animal Justice",
+      "colour": "#5b4e8a",
+      "kind": "minor"
+    },
+    "sap": {
+      "label": "Sustainable Australia",
+      "colour": "#3b7b5c",
+      "kind": "minor"
+    },
+    "ldp": {
+      "label": "Liberal Democrats",
+      "colour": "#f2a93b",
+      "kind": "minor"
+    },
+    "onp": {
+      "label": "One Nation",
+      "colour": "#f26722",
+      "kind": "minor"
+    },
+    "dlp": {
+      "label": "Labour DLP",
+      "colour": "#992e3c",
+      "kind": "minor"
+    },
+    "oth": {
+      "label": "Other",
+      "colour": "#7a6a55",
+      "kind": "bucket"
+    },
+    "ind_teal": {
+      "label": "Teal indie",
+      "colour": "#3aa8b8",
+      "kind": "indie"
+    },
+    "ind_country": {
+      "label": "Country indie",
+      "colour": "#c0884e",
+      "kind": "indie"
+    }
+  },
+  "preferenceFlows": {
+    "matrix": {
+      "grn": {
+        "source": "Composite of (a) Vic 2022 measured Samiotis/Albert Park R6 exclusion (alp 84% / lib 16%, 8,488/1,639 of 10,127) and (b) SA 2026 ALP-vs-ONP finals (10-seat sample: alp 81% / onp 19%, per Antony Green rolling summary). Row calibrated so leftover-redistribution under `lib/seats/irv.ts:75-87` produces ~85/15 in ALP-vs-Lib 2CPs and ~80/20 in ALP-vs-ONP 2CPs.",
+        "assumption": "Grn → ALP 75% / Lib 5% / ONP 15% / Oth 5%. Reserves an explicit ONP destination at 15% so seats where ONP is in the final 2CP don't rely on leftover-redistribution alone (which under-credited ONP). In ALP-vs-Lib finals where ONP is absent, the 15% reservation re-spreads via leftover across survivors and reproduces the 85/15 split.",
+        "measured": true,
+        "flows": {
+          "alp": 0.75,
+          "lib": 0.05,
+          "onp": 0.15,
+          "oth": 0.05
+        }
+      },
+      "oth": {
+        "source": "Conventional psephology estimate, not measured for 2022 in this revision (would require aggregating exclusion rounds for ONP/UAP/FFV/LDP/AJP/Reason/LegalCannabis across many seats).",
+        "assumption": "Other/minor → ALP 44% / Lib 40% / Nat 8% / Grn 8% (proportional renormalisation of the earlier 42/38/8/8/4 split that included a meaningless 4% Oth→Oth self-loop; self-loops are filtered out of IRV redistribution in lib/seats/irv.ts and rendered as the diagonal in the UI matrix, so they don't contribute to the row sum).",
+        "measured": false,
+        "flows": {
+          "alp": 0.44,
+          "lib": 0.4,
+          "nat": 0.08,
+          "grn": 0.08
+        }
+      },
+      "nat": {
+        "source": "Proxied from SA2026 Lib→ONP measurement (no direct Nat→ONP data: only 3 Nat candidates ran in SA 2026, all polling too poorly for their exclusions to yield a clean flow estimate). Assumed slightly higher than Lib's 68% on the basis that Nat voters are rural-skewed and at least as ONP-friendly as Liberals; plausible band 65–80%, midpoint chosen.",
+        "assumption": "Nat → ONP 70% / Lib 22% / ALP 6% / Grn 1% / Oth 1% (post-Hopper realignment). Per-seat preferenceOverrides on the 6 Vic 2022 country 3-corner seats (bass, euroa, mildura, morwell, narracan, shepparton) preserve the prior Nat → Lib 82% Coalition-partner flow in seats where Lib actually stands as Nat's Coalition opponent.",
+        "measured": false,
+        "flows": {
+          "onp": 0.7,
+          "lib": 0.22,
+          "alp": 0.06,
+          "grn": 0.01,
+          "oth": 0.01
+        }
+      },
+      "lib": {
+        "source": "SA2026 aggregate: Liberal preferences flowed to One Nation at ~68% across 7 ALP-vs-ONP final contests (range 53% Enfield → 73.5% Hammond). Liberal HTV cards directed ONP > ALP in every SA 2026 seat — a post-Hopper realignment from the 2022 status quo. Sources: Antony Green rolling SA2026 summary (https://antonygreen.com.au/sa2026-updating-result-summary/); Ben Raue / Tally Room (https://www.tallyroom.com.au/64676); Murray Bridge News (Hammond 73.5%).",
+        "assumption": "Lib → ONP 68% / ALP 30% / Grn 1% / Oth 1% (SA2026-style realignment). Replaces the 2022 measured Morwell+Euroa composite (Lib → Nat 88% / ALP 12%), which was specific to country 3-corner Lib-vs-Nat contests; that flow is preserved via per-seat preferenceOverrides on bass, euroa, mildura, morwell, narracan, shepparton where the Coalition-partner dynamic still dominates.",
+        "measured": true,
+        "flows": {
+          "onp": 0.68,
+          "alp": 0.3,
+          "grn": 0.01,
+          "oth": 0.01
+        }
+      },
+      "alp": {
+        "source": "Conventional psephology estimate. ALP was rarely excluded in the DoPs sampled (mostly the major-party making 2CP), and when excluded (e.g. Schween/Mornington round 3 with only 822 votes) the round had too many remaining candidates to give a clean ALP→{Grn,Lib} split.",
+        "assumption": "ALP (if excluded) → Grn 55% / Lib 20% / Nat 8% / Oth 17%",
+        "measured": false,
+        "flows": {
+          "grn": 0.55,
+          "lib": 0.2,
+          "nat": 0.08,
+          "oth": 0.17
+        }
+      },
+      "onp": {
+        "source": "Composite of (a) AEC 2025 federal TPP preference flow table (ONP → L/NP 74.50% / ALP 25.50%, 252,917 ONP TPP votes in classic ALP-vs-LNP seats — https://results.aec.gov.au/31496/Website/HouseStateTppFlow-31496-NAT.htm); (b) Antony Green's SA 2026 rolling result summary (6 Lab-vs-Lib finals where ONP was last excluded: Lib 69% / ALP 31% — https://antonygreen.com.au/sa2026-updating-result-summary/); (c) 2022 VEC LA DoPs where ONP was excluded in Bendigo East, Macedon, Morwell (small N; ONP polled only 0.22% LA statewide in 2022). The 74.5% federal Coalition share is split into Lib and Nat on the assumption most VIC ONP-strong seats are metro/regional non-3-corner contests where only Lib runs; Nat share kept small and concentrated onto country 3-corner seats via per-seat preferenceOverrides.",
+        "assumption": "One Nation → Lib 67% / Nat 2% / ALP 27% / Grn 2% / Teal 1% / Oth 1% (Coalition aggregate 69%, matching SA 2026 6-seat ALP-vs-Lib final measurement of 69/31). Nudged from prior 70/22 split: ALP up to 27% (closer to SA's 31% but kept below it because the SA sample is biased to seats where ALP primary was unusually low), Coalition share down a touch. Nat reservation shrunk to 2% (most ONP-strong Vic seats are metro/regional non-3-corner contests; Nat share will be re-routed by leftover redistribution in the few country seats). Teal 1% reflects that a handful of ONP voters put community indies above Labor/Greens; auto-normalised away by IRV in seats without a teal candidate.",
+        "measured": false,
+        "flows": {
+          "lib": 0.67,
+          "nat": 0.02,
+          "alp": 0.27,
+          "grn": 0.02,
+          "ind_teal": 0.01,
+          "oth": 0.01
+        }
+      },
+      "ind_teal": {
+        "source": "https://www.vec.vic.gov.au/results/state-election-results/2022-state-election-results/results-by-district/hawthorn-district-results/hawthorn-results-distribution + .../kew-district-results/kew-results-distribution + corroborating: .../mornington-district-results/mornington-results-distribution (Grn→Lardner 83.8% in round 6, consistent with Lardner being a progressive-leaning indie)",
+        "assumption": "Teal → ALP 75% / Lib 25% (measured composite from Hawthorn + Kew: Lowe 9,219/2,839 of 12,058; Torney 8,379/3,092 of 11,471 — weighted 17,598/5,931 of 23,529 → ALP 74.8% / Lib 25.2%). Greens already excluded in both measured contests; small Grn share reserved on the assumption some teal voters had Grn above Lib. Lardner/Mornington made 2CP so her own flows are unobservable — proxied via Hawthorn+Kew; the Grn→Lardner 84% flow in Mornington corroborates her teal profile.",
+        "measured": true,
+        "flows": {
+          "alp": 0.72,
+          "lib": 0.23,
+          "grn": 0.04,
+          "oth": 0.01
+        }
+      },
+      "ind_country": {
+        "source": "Proxied from Altmann (South-West Coast) measured flow + community-indie convention. Direct measurement impossible: Hawkins (Benambra), Cupper (Mildura) and Sheed (Shepparton) all made 2CP in their seats, so their preferences were never distributed.",
+        "assumption": "Country indie → ALP 55% / Lib 22% / Nat 15% / Grn 5% / Oth 3% (Altmann-shaped, with Nat share added since these contests are 3-cornered Coalition).",
+        "measured": false,
+        "flows": {
+          "alp": 0.55,
+          "lib": 0.22,
+          "nat": 0.15,
+          "grn": 0.05,
+          "oth": 0.03
+        }
+      }
+    }
+  },
+  "seats": [
+    {
+      "id": "albert-park",
+      "name": "Albert Park",
+      "demographic": "Inner Metropolitan",
+      "formal": 39110,
+      "primaries": {
+        "alp": 14254,
+        "lib": 11659,
+        "grn": 8178,
+        "oth": 5019
+      }
+    },
+    {
+      "id": "ashwood",
+      "name": "Ashwood",
+      "demographic": "Inner Metropolitan",
+      "formal": 44710,
+      "primaries": {
+        "alp": 18014,
+        "lib": 16618,
+        "grn": 6612,
+        "oth": 3466
+      }
+    },
+    {
+      "id": "bass",
+      "name": "Bass",
+      "demographic": "Rural",
+      "formal": 41404,
+      "primaries": {
+        "alp": 13478,
+        "lib": 12482,
+        "nat": 5506,
+        "grn": 3369,
+        "oth": 6569
+      }
+    },
+    {
+      "id": "bayswater",
+      "name": "Bayswater",
+      "demographic": "Outer Metropolitan",
+      "formal": 42599,
+      "primaries": {
+        "alp": 17609,
+        "lib": 15174,
+        "grn": 3151,
+        "oth": 6665
+      }
+    },
+    {
+      "id": "bellarine",
+      "name": "Bellarine",
+      "demographic": "Provincial",
+      "formal": 47153,
+      "primaries": {
+        "alp": 20103,
+        "lib": 15617,
+        "grn": 5537,
+        "oth": 5896
+      }
+    },
+    {
+      "id": "benambra",
+      "name": "Benambra",
+      "demographic": "Rural",
+      "formal": 41135,
+      "primaries": {
+        "alp": 5375,
+        "lib": 17658,
+        "grn": 1592,
+        "ind_country": 13038,
+        "oth": 3472
+      }
+    },
+    {
+      "id": "bendigo-east",
+      "name": "Bendigo East",
+      "demographic": "Provincial",
+      "formal": 45568,
+      "primaries": {
+        "alp": 22010,
+        "lib": 12478,
+        "grn": 3944,
+        "onp": 2597,
+        "oth": 4539
+      }
+    },
+    {
+      "id": "bendigo-west",
+      "name": "Bendigo West",
+      "demographic": "Provincial",
+      "formal": 40248,
+      "primaries": {
+        "alp": 18704,
+        "lib": 10057,
+        "grn": 4634,
+        "oth": 6853
+      }
+    },
+    {
+      "id": "bentleigh",
+      "name": "Bentleigh",
+      "demographic": "Inner Metropolitan",
+      "formal": 45120,
+      "primaries": {
+        "alp": 20656,
+        "lib": 16401,
+        "grn": 4845,
+        "oth": 3218
+      }
+    },
+    {
+      "id": "berwick",
+      "name": "Berwick",
+      "demographic": "Provincial",
+      "formal": 44289,
+      "primaries": {
+        "alp": 15874,
+        "lib": 20031,
+        "grn": 4297,
+        "oth": 4087
+      }
+    },
+    {
+      "id": "box-hill",
+      "name": "Box Hill",
+      "demographic": "Outer Metropolitan",
+      "formal": 44357,
+      "primaries": {
+        "alp": 18340,
+        "lib": 15593,
+        "grn": 6267,
+        "oth": 4157
+      }
+    },
+    {
+      "id": "brighton",
+      "name": "Brighton",
+      "demographic": "Inner Metropolitan",
+      "formal": 41196,
+      "primaries": {
+        "alp": 10164,
+        "lib": 18791,
+        "grn": 5680,
+        "oth": 6561
+      }
+    },
+    {
+      "id": "broadmeadows",
+      "name": "Broadmeadows",
+      "demographic": "Outer Metropolitan",
+      "formal": 34780,
+      "primaries": {
+        "alp": 15899,
+        "lib": 8044,
+        "grn": 2908,
+        "oth": 7929
+      }
+    },
+    {
+      "id": "brunswick",
+      "name": "Brunswick",
+      "demographic": "Inner Metropolitan",
+      "formal": 43445,
+      "primaries": {
+        "alp": 12392,
+        "lib": 4723,
+        "grn": 18959,
+        "oth": 7371
+      }
+    },
+    {
+      "id": "bulleen",
+      "name": "Bulleen",
+      "demographic": "Outer Metropolitan",
+      "formal": 42959,
+      "primaries": {
+        "alp": 14052,
+        "lib": 20645,
+        "grn": 4576,
+        "oth": 3686
+      }
+    },
+    {
+      "id": "bundoora",
+      "name": "Bundoora",
+      "demographic": "Outer Metropolitan",
+      "formal": 40336,
+      "primaries": {
+        "alp": 19288,
+        "lib": 11167,
+        "grn": 5311,
+        "oth": 4570
+      }
+    },
+    {
+      "id": "carrum",
+      "name": "Carrum",
+      "demographic": "Outer Metropolitan",
+      "formal": 43300,
+      "primaries": {
+        "alp": 21586,
+        "lib": 13141,
+        "grn": 3282,
+        "oth": 5291
+      }
+    },
+    {
+      "id": "caulfield",
+      "name": "Caulfield",
+      "demographic": "Inner Metropolitan",
+      "formal": 40683,
+      "primaries": {
+        "alp": 11301,
+        "lib": 18088,
+        "grn": 6447,
+        "oth": 4847
+      }
+    },
+    {
+      "id": "clarinda",
+      "name": "Clarinda",
+      "demographic": "Outer Metropolitan",
+      "formal": 40564,
+      "primaries": {
+        "alp": 18441,
+        "lib": 11593,
+        "grn": 3227,
+        "oth": 7303
+      }
+    },
+    {
+      "id": "cranbourne",
+      "name": "Cranbourne",
+      "demographic": "Outer Metropolitan",
+      "formal": 40822,
+      "primaries": {
+        "alp": 18853,
+        "lib": 11230,
+        "grn": 2282,
+        "oth": 8457
+      }
+    },
+    {
+      "id": "croydon",
+      "name": "Croydon",
+      "demographic": "Outer Metropolitan",
+      "formal": 45639,
+      "primaries": {
+        "alp": 15564,
+        "lib": 19605,
+        "grn": 4940,
+        "oth": 5530
+      }
+    },
+    {
+      "id": "dandenong",
+      "name": "Dandenong",
+      "demographic": "Outer Metropolitan",
+      "formal": 39507,
+      "primaries": {
+        "alp": 21677,
+        "lib": 8475,
+        "grn": 3215,
+        "oth": 6140
+      }
+    },
+    {
+      "id": "eildon",
+      "name": "Eildon",
+      "demographic": "Rural",
+      "formal": 42399,
+      "primaries": {
+        "alp": 12284,
+        "lib": 20119,
+        "grn": 4753,
+        "oth": 5243
+      }
+    },
+    {
+      "id": "eltham",
+      "name": "Eltham",
+      "demographic": "Outer Metropolitan",
+      "formal": 43844,
+      "primaries": {
+        "alp": 19509,
+        "lib": 15615,
+        "grn": 5897,
+        "oth": 2823
+      }
+    },
+    {
+      "id": "essendon",
+      "name": "Essendon",
+      "demographic": "Inner Metropolitan",
+      "formal": 41867,
+      "primaries": {
+        "alp": 17196,
+        "lib": 12331,
+        "grn": 6344,
+        "oth": 5996
+      }
+    },
+    {
+      "id": "eureka",
+      "name": "Eureka",
+      "demographic": "Provincial",
+      "formal": 45247,
+      "primaries": {
+        "alp": 18531,
+        "lib": 14320,
+        "grn": 4887,
+        "oth": 7509
+      }
+    },
+    {
+      "id": "euroa",
+      "name": "Euroa",
+      "demographic": "Rural",
+      "formal": 42242,
+      "primaries": {
+        "alp": 12840,
+        "lib": 9227,
+        "nat": 13496,
+        "grn": 2245,
+        "oth": 4434
+      }
+    },
+    {
+      "id": "evelyn",
+      "name": "Evelyn",
+      "demographic": "Rural",
+      "formal": 43665,
+      "primaries": {
+        "alp": 14277,
+        "lib": 20385,
+        "grn": 4052,
+        "oth": 4951
+      }
+    },
+    {
+      "id": "footscray",
+      "name": "Footscray",
+      "demographic": "Inner Metropolitan",
+      "formal": 40340,
+      "primaries": {
+        "alp": 17387,
+        "lib": 7214,
+        "grn": 9045,
+        "oth": 6694
+      }
+    },
+    {
+      "id": "frankston",
+      "name": "Frankston",
+      "demographic": "Outer Metropolitan",
+      "formal": 39941,
+      "primaries": {
+        "alp": 16595,
+        "lib": 11762,
+        "grn": 5060,
+        "oth": 6524
+      }
+    },
+    {
+      "id": "geelong",
+      "name": "Geelong",
+      "demographic": "Provincial",
+      "formal": 44762,
+      "primaries": {
+        "alp": 20754,
+        "lib": 12194,
+        "grn": 6849,
+        "oth": 4965
+      }
+    },
+    {
+      "id": "gippsland-east",
+      "name": "Gippsland East",
+      "demographic": "Rural",
+      "formal": 42212,
+      "primaries": {
+        "alp": 7191,
+        "nat": 26737,
+        "grn": 2691,
+        "oth": 5593
+      }
+    },
+    {
+      "id": "gippsland-south",
+      "name": "Gippsland South",
+      "demographic": "Rural",
+      "formal": 42363,
+      "primaries": {
+        "alp": 9920,
+        "nat": 22566,
+        "grn": 3538,
+        "oth": 6339
+      }
+    },
+    {
+      "id": "glen-waverley",
+      "name": "Glen Waverley",
+      "demographic": "Inner Metropolitan",
+      "formal": 44667,
+      "primaries": {
+        "alp": 18153,
+        "lib": 17941,
+        "grn": 4279,
+        "oth": 4294
+      }
+    },
+    {
+      "id": "greenvale",
+      "name": "Greenvale",
+      "demographic": "Outer Metropolitan",
+      "formal": 37686,
+      "primaries": {
+        "alp": 15628,
+        "lib": 9568,
+        "grn": 2194,
+        "oth": 10296
+      }
+    },
+    {
+      "id": "hastings",
+      "name": "Hastings",
+      "demographic": "Rural",
+      "formal": 41232,
+      "primaries": {
+        "alp": 15361,
+        "lib": 16415,
+        "grn": 4118,
+        "oth": 5338
+      }
+    },
+    {
+      "id": "hawthorn",
+      "name": "Hawthorn",
+      "demographic": "Inner Metropolitan",
+      "formal": 44310,
+      "primaries": {
+        "alp": 9799,
+        "lib": 18728,
+        "grn": 4927,
+        "ind_teal": 8851,
+        "oth": 2005
+      }
+    },
+    {
+      "id": "ivanhoe",
+      "name": "Ivanhoe",
+      "demographic": "Outer Metropolitan",
+      "formal": 40599,
+      "primaries": {
+        "alp": 17333,
+        "lib": 12566,
+        "grn": 7808,
+        "oth": 2892
+      }
+    },
+    {
+      "id": "kalkallo",
+      "name": "Kalkallo",
+      "demographic": "Rural",
+      "formal": 39980,
+      "primaries": {
+        "alp": 21531,
+        "lib": 9154,
+        "grn": 2116,
+        "oth": 7179
+      }
+    },
+    {
+      "id": "kew",
+      "name": "Kew",
+      "demographic": "Inner Metropolitan",
+      "formal": 43592,
+      "primaries": {
+        "alp": 9896,
+        "lib": 19321,
+        "grn": 3612,
+        "ind_teal": 9200,
+        "oth": 1563
+      }
+    },
+    {
+      "id": "kororoit",
+      "name": "Kororoit",
+      "demographic": "Outer Metropolitan",
+      "formal": 40373,
+      "primaries": {
+        "alp": 17468,
+        "lib": 9801,
+        "grn": 2650,
+        "oth": 10454
+      }
+    },
+    {
+      "id": "lara",
+      "name": "Lara",
+      "demographic": "Provincial",
+      "formal": 39521,
+      "primaries": {
+        "alp": 19635,
+        "lib": 8460,
+        "grn": 4473,
+        "oth": 6953
+      }
+    },
+    {
+      "id": "laverton",
+      "name": "Laverton",
+      "demographic": "Inner Metropolitan",
+      "formal": 37137,
+      "primaries": {
+        "alp": 17026,
+        "lib": 8233,
+        "grn": 3496,
+        "oth": 8382
+      }
+    },
+    {
+      "id": "lowan",
+      "name": "Lowan",
+      "demographic": "Rural",
+      "formal": 43297,
+      "primaries": {
+        "alp": 8554,
+        "nat": 25482,
+        "grn": 2575,
+        "oth": 6686
+      }
+    },
+    {
+      "id": "macedon",
+      "name": "Macedon",
+      "demographic": "Rural",
+      "formal": 41589,
+      "primaries": {
+        "alp": 17234,
+        "lib": 12463,
+        "grn": 5214,
+        "onp": 1511,
+        "oth": 5167
+      }
+    },
+    {
+      "id": "malvern",
+      "name": "Malvern",
+      "demographic": "Inner Metropolitan",
+      "formal": 40801,
+      "primaries": {
+        "alp": 10686,
+        "lib": 21438,
+        "grn": 6390,
+        "oth": 2287
+      }
+    },
+    {
+      "id": "melbourne",
+      "name": "Melbourne",
+      "demographic": "Inner Metropolitan",
+      "formal": 42519,
+      "primaries": {
+        "alp": 13033,
+        "lib": 7522,
+        "grn": 15855,
+        "oth": 6109
+      }
+    },
+    {
+      "id": "melton",
+      "name": "Melton",
+      "demographic": "Provincial",
+      "formal": 37619,
+      "primaries": {
+        "alp": 14193,
+        "lib": 9155,
+        "grn": 1711,
+        "oth": 12560
+      }
+    },
+    {
+      "id": "mildura",
+      "name": "Mildura",
+      "demographic": "Rural",
+      "formal": 38140,
+      "primaries": {
+        "alp": 2483,
+        "lib": 7291,
+        "nat": 9868,
+        "grn": 894,
+        "ind_country": 12913,
+        "oth": 4691
+      }
+    },
+    {
+      "id": "mill-park",
+      "name": "Mill Park",
+      "demographic": "Outer Metropolitan",
+      "formal": 37798,
+      "primaries": {
+        "alp": 18857,
+        "lib": 9797,
+        "grn": 2761,
+        "oth": 6383
+      }
+    },
+    {
+      "id": "monbulk",
+      "name": "Monbulk",
+      "demographic": "Rural",
+      "formal": 41797,
+      "primaries": {
+        "alp": 15071,
+        "lib": 12327,
+        "grn": 6255,
+        "oth": 8144
+      }
+    },
+    {
+      "id": "mordialloc",
+      "name": "Mordialloc",
+      "demographic": "Outer Metropolitan",
+      "formal": 44059,
+      "primaries": {
+        "alp": 19398,
+        "lib": 13829,
+        "grn": 4526,
+        "oth": 6306
+      }
+    },
+    {
+      "id": "mornington",
+      "name": "Mornington",
+      "demographic": "Rural",
+      "formal": 42062,
+      "primaries": {
+        "alp": 9246,
+        "lib": 17910,
+        "grn": 2677,
+        "ind_teal": 9432,
+        "oth": 2797
+      }
+    },
+    {
+      "id": "morwell",
+      "name": "Morwell",
+      "demographic": "Rural",
+      "formal": 43261,
+      "primaries": {
+        "alp": 13601,
+        "lib": 6710,
+        "nat": 9902,
+        "grn": 1830,
+        "onp": 2648,
+        "oth": 8570
+      }
+    },
+    {
+      "id": "mulgrave",
+      "name": "Mulgrave",
+      "demographic": "Inner Metropolitan",
+      "formal": 37971,
+      "primaries": {
+        "alp": 19365,
+        "lib": 6528,
+        "grn": 1930,
+        "oth": 10148
+      }
+    },
+    {
+      "id": "murray-plains",
+      "name": "Murray Plains",
+      "demographic": "Rural",
+      "formal": 40191,
+      "primaries": {
+        "alp": 7543,
+        "nat": 24831,
+        "grn": 1560,
+        "oth": 6257
+      }
+    },
+    {
+      "id": "narracan",
+      "name": "Narracan",
+      "demographic": "Rural",
+      "formal": 41500,
+      "primaries": {
+        "alp": 13280,
+        "lib": 9462,
+        "nat": 7512,
+        "grn": 2573,
+        "oth": 8673
+      }
+    },
+    {
+      "id": "narre-warren-north",
+      "name": "Narre Warren North",
+      "demographic": "Outer Metropolitan",
+      "formal": 41370,
+      "primaries": {
+        "alp": 19350,
+        "lib": 11291,
+        "grn": 2809,
+        "oth": 7920
+      }
+    },
+    {
+      "id": "narre-warren-south",
+      "name": "Narre Warren South",
+      "demographic": "Outer Metropolitan",
+      "formal": 42859,
+      "primaries": {
+        "alp": 20562,
+        "lib": 12280,
+        "grn": 2836,
+        "oth": 7181
+      }
+    },
+    {
+      "id": "nepean",
+      "name": "Nepean",
+      "demographic": "Rural",
+      "formal": 40766,
+      "primaries": {
+        "alp": 13308,
+        "lib": 19614,
+        "grn": 3576,
+        "oth": 4268
+      }
+    },
+    {
+      "id": "niddrie",
+      "name": "Niddrie",
+      "demographic": "Inner Metropolitan",
+      "formal": 42242,
+      "primaries": {
+        "alp": 18567,
+        "lib": 14344,
+        "grn": 3117,
+        "oth": 6214
+      }
+    },
+    {
+      "id": "northcote",
+      "name": "Northcote",
+      "demographic": "Inner Metropolitan",
+      "formal": 42642,
+      "primaries": {
+        "alp": 17303,
+        "lib": 5205,
+        "grn": 12797,
+        "oth": 7337
+      }
+    },
+    {
+      "id": "oakleigh",
+      "name": "Oakleigh",
+      "demographic": "Inner Metropolitan",
+      "formal": 43910,
+      "primaries": {
+        "alp": 19778,
+        "lib": 12848,
+        "grn": 7278,
+        "oth": 4006
+      }
+    },
+    {
+      "id": "ovens-valley",
+      "name": "Ovens Valley",
+      "demographic": "Rural",
+      "formal": 40390,
+      "primaries": {
+        "alp": 8369,
+        "nat": 21057,
+        "grn": 3625,
+        "oth": 7339
+      }
+    },
+    {
+      "id": "pakenham",
+      "name": "Pakenham",
+      "demographic": "Provincial",
+      "formal": 38867,
+      "primaries": {
+        "alp": 13151,
+        "lib": 12605,
+        "grn": 2571,
+        "onp": 1321,
+        "oth": 9219
+      }
+    },
+    {
+      "id": "pascoe-vale",
+      "name": "Pascoe Vale",
+      "demographic": "Inner Metropolitan",
+      "formal": 40273,
+      "primaries": {
+        "alp": 15611,
+        "lib": 8461,
+        "grn": 9034,
+        "oth": 7167
+      }
+    },
+    {
+      "id": "point-cook",
+      "name": "Point Cook",
+      "demographic": "Inner Metropolitan",
+      "formal": 39099,
+      "primaries": {
+        "alp": 15657,
+        "lib": 9651,
+        "grn": 2657,
+        "oth": 11134
+      }
+    },
+    {
+      "id": "polwarth",
+      "name": "Polwarth",
+      "demographic": "Rural",
+      "formal": 46002,
+      "primaries": {
+        "alp": 13484,
+        "lib": 19540,
+        "grn": 7661,
+        "oth": 5317
+      }
+    },
+    {
+      "id": "prahran",
+      "name": "Prahran",
+      "demographic": "Inner Metropolitan",
+      "formal": 39243,
+      "primaries": {
+        "alp": 10421,
+        "lib": 12198,
+        "grn": 14286,
+        "oth": 2338
+      }
+    },
+    {
+      "id": "preston",
+      "name": "Preston",
+      "demographic": "Inner Metropolitan",
+      "formal": 39857,
+      "primaries": {
+        "alp": 14999,
+        "lib": 6883,
+        "grn": 6027,
+        "oth": 11948
+      }
+    },
+    {
+      "id": "richmond",
+      "name": "Richmond",
+      "demographic": "Inner Metropolitan",
+      "formal": 39731,
+      "primaries": {
+        "alp": 13037,
+        "lib": 7456,
+        "grn": 13771,
+        "oth": 5467
+      }
+    },
+    {
+      "id": "ringwood",
+      "name": "Ringwood",
+      "demographic": "Outer Metropolitan",
+      "formal": 45753,
+      "primaries": {
+        "alp": 17851,
+        "lib": 15467,
+        "grn": 7105,
+        "oth": 5330
+      }
+    },
+    {
+      "id": "ripon",
+      "name": "Ripon",
+      "demographic": "Rural",
+      "formal": 42341,
+      "primaries": {
+        "alp": 16321,
+        "lib": 15305,
+        "grn": 2524,
+        "oth": 8191
+      }
+    },
+    {
+      "id": "rowville",
+      "name": "Rowville",
+      "demographic": "Outer Metropolitan",
+      "formal": 43369,
+      "primaries": {
+        "alp": 14283,
+        "lib": 17600,
+        "grn": 3055,
+        "oth": 8431
+      }
+    },
+    {
+      "id": "sandringham",
+      "name": "Sandringham",
+      "demographic": "Inner Metropolitan",
+      "formal": 40512,
+      "primaries": {
+        "alp": 10426,
+        "lib": 18783,
+        "grn": 5949,
+        "oth": 5354
+      }
+    },
+    {
+      "id": "shepparton",
+      "name": "Shepparton",
+      "demographic": "Rural",
+      "formal": 41301,
+      "primaries": {
+        "alp": 3285,
+        "lib": 8491,
+        "nat": 13242,
+        "grn": 1056,
+        "ind_country": 12146,
+        "oth": 3081
+      }
+    },
+    {
+      "id": "south-barwon",
+      "name": "South Barwon",
+      "demographic": "Rural",
+      "formal": 45184,
+      "primaries": {
+        "alp": 19969,
+        "lib": 14516,
+        "grn": 5719,
+        "oth": 4980
+      }
+    },
+    {
+      "id": "south-west-coast",
+      "name": "South-West Coast",
+      "demographic": "Rural",
+      "formal": 45496,
+      "primaries": {
+        "alp": 9640,
+        "lib": 19517,
+        "grn": 2457,
+        "oth": 13882
+      }
+    },
+    {
+      "id": "st-albans",
+      "name": "St Albans",
+      "demographic": "Inner Metropolitan",
+      "formal": 35716,
+      "primaries": {
+        "alp": 15094,
+        "lib": 9066,
+        "grn": 2416,
+        "oth": 9140
+      }
+    },
+    {
+      "id": "sunbury",
+      "name": "Sunbury",
+      "demographic": "Provincial",
+      "formal": 37706,
+      "primaries": {
+        "alp": 16253,
+        "lib": 11895,
+        "grn": 2459,
+        "oth": 7099
+      }
+    },
+    {
+      "id": "sydenham",
+      "name": "Sydenham",
+      "demographic": "Outer Metropolitan",
+      "formal": 43664,
+      "primaries": {
+        "alp": 18978,
+        "lib": 12661,
+        "grn": 2547,
+        "oth": 9478
+      }
+    },
+    {
+      "id": "tarneit",
+      "name": "Tarneit",
+      "demographic": "Outer Metropolitan",
+      "formal": 38978,
+      "primaries": {
+        "alp": 18173,
+        "lib": 10438,
+        "grn": 2883,
+        "oth": 7484
+      }
+    },
+    {
+      "id": "thomastown",
+      "name": "Thomastown",
+      "demographic": "Outer Metropolitan",
+      "formal": 37476,
+      "primaries": {
+        "alp": 19396,
+        "lib": 9003,
+        "grn": 2557,
+        "oth": 6520
+      }
+    },
+    {
+      "id": "warrandyte",
+      "name": "Warrandyte",
+      "demographic": "Outer Metropolitan",
+      "formal": 45075,
+      "primaries": {
+        "alp": 14946,
+        "lib": 21344,
+        "grn": 5283,
+        "oth": 3502
+      }
+    },
+    {
+      "id": "wendouree",
+      "name": "Wendouree",
+      "demographic": "Provincial",
+      "formal": 42175,
+      "primaries": {
+        "alp": 20059,
+        "lib": 12548,
+        "grn": 4386,
+        "oth": 5182
+      }
+    },
+    {
+      "id": "werribee",
+      "name": "Werribee",
+      "demographic": "Provincial",
+      "formal": 38603,
+      "primaries": {
+        "alp": 17512,
+        "lib": 9779,
+        "grn": 2613,
+        "oth": 8699
+      }
+    },
+    {
+      "id": "williamstown",
+      "name": "Williamstown",
+      "demographic": "Inner Metropolitan",
+      "formal": 38974,
+      "primaries": {
+        "alp": 16173,
+        "lib": 10928,
+        "grn": 6013,
+        "oth": 5860
+      }
+    },
+    {
+      "id": "yan-yean",
+      "name": "Yan Yean",
+      "demographic": "Rural",
+      "formal": 39419,
+      "primaries": {
+        "alp": 16328,
+        "lib": 13361,
+        "grn": 2537,
+        "oth": 7193
+      }
+    }
+  ]
+}

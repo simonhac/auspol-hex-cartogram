@@ -630,3 +630,401 @@
   /* The threshold shifts slightly between years (76/151 vs 76/150). */
   transition: left 0.4s ease;
 }
+
+/* =====================================================================
+   Swing panels — SwingPanel / DemographicSkewPanel / FlowMatrixEditor
+   ---------------------------------------------------------------------
+   The "judgement slider" (a native range input with an invisible thumb
+   and a positioned overlay thumb), the panel chrome, the swing rows, and
+   the preference-flow matrix. Extracted from the wallofadvantage app's
+   globals.css. `--font-mono` is referenced but left to degrade to
+   `ui-monospace, monospace`; define it (and the palette above) on a
+   parent to theme.
+   ===================================================================== */
+
+:root {
+  --party-warn: #b66e1f;
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-feature-settings: "tnum", "zero";
+}
+
+/* ---------- Judgement slider (shared primitive) ---------- */
+.judgement-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 4px;
+  /* Inset the visible track by 9px (half the thumb width) on each side so
+     its ends line up with the thumb-centre travel range. Both the thumb
+     and tick marks use the same edge-correction in SwingSlider.tsx, so
+     value 0% / 100% lands exactly on the visible track ends. */
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    transparent 9px,
+    var(--paper-rule) 9px,
+    var(--paper-rule) calc(100% - 9px),
+    transparent calc(100% - 9px),
+    transparent 100%
+  );
+  outline: none;
+  margin: 0;
+  touch-action: none;
+}
+/* Native thumb is invisible but kept full-size so it remains the drag
+   target. The visible thumb is a sibling overlay anchored to the
+   slider's value, not its cursor position — see SwingSlider.tsx. */
+.judgement-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.judgement-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+.slider-thumb-overlay {
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background: var(--ink);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--ink);
+  border-radius: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+.judgement-slider-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 8px 0 4px;
+}
+
+/* ---------- Panel chrome ---------- */
+.seats-panel {
+  background: var(--paper-2);
+  border: 1px solid var(--paper-rule);
+  border-radius: 4px;
+  padding: 16px;
+}
+.seats-panel section + section {
+  margin-top: 16px;
+}
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.panel-head h2 {
+  margin: 0;
+  font-size: 16px;
+}
+.panel-head .btn {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid var(--paper-rule);
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.panel-head .btn:hover:not(:disabled) {
+  background: var(--paper-2);
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+.panel-sub {
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.link-btn {
+  background: transparent;
+  border: 0;
+  color: var(--rust);
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+/* ---------- Swing rows ---------- */
+.swing-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.swing-row {
+  display: grid;
+  grid-template-columns: 10px 1fr 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.swing-row.show-focus-ring {
+  outline: 2px dashed #bbb;
+  outline-offset: 2px;
+}
+.swing-row > .swing-chip,
+.swing-row > .swing-label {
+  cursor: pointer;
+}
+.swing-chip {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.swing-chip.small { width: 8px; height: 8px; }
+.swing-label { color: var(--ink-2); }
+.swing-slider:focus { outline: none; }
+/* Smaller thumb override for the swing sliders. Scoped under .swing-row so
+   it wins on specificity against the base .slider-thumb-overlay rule. The
+   native drag-target stays at 18px (see .judgement-slider::-*-thumb) so the
+   hit area is unchanged. */
+.swing-row .slider-thumb-overlay {
+  width: 10px;
+  height: 10px;
+  border-width: 1px;
+}
+/* Manual (user-pinned) thumb is solid; automatic (algorithm-driven) thumb
+   is hollow with the same silhouette so positions read identically. */
+.swing-row .slider-thumb-overlay.auto {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 0 0 0 1px var(--paper);
+}
+.swing-row .slider-thumb-overlay.locked {
+  opacity: 0.5;
+}
+.swing-row .slider-thumb-overlay.inert {
+  opacity: 0.35;
+}
+.swing-row--inert {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.swing-row--inert > .swing-chip,
+.swing-row--inert > .swing-label,
+.swing-row--inert .swing-slider {
+  cursor: not-allowed;
+}
+/* Vertical-line tick marks at each step on the swing slider. Scoped under
+   .swing-row, positioned with the same 9px edge-correction as the thumb so
+   they land on the visible track ends. z-index above the input so they paint
+   on top of the track gradient. */
+.swing-row .swing-tick {
+  position: absolute;
+  top: 50%;
+  width: 1px;
+  height: 4px;
+  background: var(--ink-4);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+.swing-row .swing-tick--zero {
+  height: 4px;
+}
+.swing-value {
+  text-align: right;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* ---------- Preference-flow matrix ---------- */
+.flow-matrix { margin-top: 10px; }
+.flow-help {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin: 0 0 10px;
+}
+.flow-matrix-scroll {
+  overflow-x: auto;
+  margin: 0 -16px;
+  padding: 0 16px 4px;
+}
+.flow-matrix-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 11px;
+  table-layout: auto;
+  width: 100%;
+}
+.flow-matrix-table .flow-col-head,
+.flow-matrix-table .flow-cell {
+  width: 36px;
+}
+.flow-matrix-table .flow-row-head-cell {
+  width: 1%;
+  white-space: nowrap;
+}
+.flow-matrix-table .flow-sum-head,
+.flow-matrix-table .flow-sum {
+  width: 38px;
+  text-align: right !important;
+}
+.flow-matrix-table .flow-sum-head { padding-right: 8px !important; }
+.flow-matrix-table .flow-sum .flow-sum-num { padding-right: 4px; }
+.flow-matrix-table tr.dirty .flow-sum .flow-sum-num { padding-right: 16px; }
+.flow-matrix-table th,
+.flow-matrix-table td {
+  padding: 3px 4px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--paper-rule);
+  border-right: 1px solid var(--paper-rule);
+}
+.flow-matrix-table th:first-child,
+.flow-matrix-table td:first-child {
+  border-left: 1px solid var(--paper-rule);
+}
+.flow-matrix-table thead th {
+  border-top: 1px solid var(--paper-rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.flow-corner {
+  width: 60px;
+  text-align: left !important;
+  padding-left: 6px !important;
+  background: var(--paper) !important;
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--ink-4);
+  line-height: 1.1;
+}
+.flow-corner-from, .flow-corner-to {
+  display: block;
+}
+.flow-col-head {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 4px 2px !important;
+  min-width: 28px;
+}
+.flow-col-head .swing-chip {
+  display: block;
+  margin: 0 auto 2px;
+  width: 10px;
+  height: 4px;
+  border-radius: 1px;
+}
+.flow-col-label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: .02em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.flow-sum-head {
+  background: var(--paper) !important;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.flow-row-head-cell {
+  text-align: left !important;
+  padding: 4px 6px !important;
+  font-weight: 600;
+  background: var(--paper-2);
+  white-space: nowrap;
+}
+.flow-row-head-cell .swing-chip {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.flow-row-label {
+  font-size: 11px;
+  color: var(--ink);
+}
+.flow-cell {
+  padding: 2px !important;
+  background: var(--paper);
+}
+.flow-cell.diag {
+  background: var(--paper-2);
+  color: var(--ink-4);
+  font-size: 10px;
+}
+.flow-cell input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  text-align: right;
+  color: var(--ink);
+  -moz-appearance: textfield;
+}
+.flow-cell input::-webkit-outer-spin-button,
+.flow-cell input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.flow-cell input:hover {
+  border-color: var(--paper-rule);
+}
+.flow-cell input:focus {
+  outline: none;
+  border-color: var(--rust);
+  background: #fff;
+}
+.flow-matrix-table tr.dirty .flow-row-head-cell {
+  background: #fff6e6;
+}
+.flow-sum {
+  font-size: 10px;
+  background: var(--paper-2);
+  padding: 2px 4px !important;
+  position: relative;
+}
+.flow-sum.ok { color: var(--ink-3); }
+.flow-sum.warn { color: var(--party-warn); }
+.flow-sum.bad { color: var(--rust); font-weight: 600; }
+.flow-sum .flow-reset-btn {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  text-decoration: none;
+  padding: 0 2px;
+  line-height: 1;
+}

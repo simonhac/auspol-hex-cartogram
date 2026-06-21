@@ -64,3 +64,19 @@ export {
   sampleVotesParties,
   type SampleParty,
 } from "./charts/sampleData";
+
+// --- Swing panels (ported from wallofadvantage) ---
+export {
+  SwingSlider,
+  type SwingSliderProps,
+  type SwingTick,
+} from "./swings/SwingSlider";
+export { SwingPanel, type SwingPanelProps } from "./swings/SwingPanel";
+export {
+  DemographicSkewPanel,
+  type DemographicSkewPanelProps,
+} from "./swings/DemographicSkewPanel";
+export {
+  FlowMatrixEditor,
+  type FlowMatrixEditorProps,
+} from "./swings/FlowMatrixEditor";

@@ -5,6 +5,7 @@ import { ParliamentPage } from "./pages/ParliamentPage";
 import { VotesChartPage } from "./pages/VotesChartPage";
 import { SeatsChartPage } from "./pages/SeatsChartPage";
 import { CompositionBarPage } from "./pages/CompositionBarPage";
+import { SwingsPage } from "./pages/SwingsPage";
 
 export interface RouteDef {
   path: string;
@@ -31,5 +32,11 @@ export const routes: RouteDef[] = [
     label: "Composition Bar",
     group: "Charts",
     element: <CompositionBarPage />,
+  },
+  {
+    path: "/controls/swings",
+    label: "Swing Panels",
+    group: "Controls",
+    element: <SwingsPage />,
   },
 ];
