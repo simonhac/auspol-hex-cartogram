@@ -1,45 +1,51 @@
-// Render the example pages with headless Chromium and capture one PNG per
-// component for the README. Run from the repo root:
+// Capture one framed PNG per gallery widget for the README. Each gallery page
+// wraps its widget in a `.demo-surface` card (background, border, padding), so
+// shooting that element gives every screenshot a consistent look.
+//
+// Run the gallery dev server first, then this script from the repo root:
+//   npm run dev                       # Vite at http://localhost:5173
 //   node tools/screenshot-examples.mjs
-// Requires a static server at http://localhost:8000 serving the repo root.
+//
+// Override the base URL (e.g. to shoot a production build) with GALLERY_URL.
 import { chromium } from "playwright-chromium";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "docs", "images");
-const BASE = "http://localhost:8000";
+const BASE = process.env.GALLERY_URL ?? "http://localhost:5173/auspoligraphs";
+
+// One entry per gallery route. `ready` is a selector that must be present before
+// we shoot — for SVG widgets we wait for actual drawn content so animated charts
+// have something on screen.
+const SHOTS = [
+  { route: "/cartogram", file: "cartogram.png", ready: ".demo-surface svg polygon" },
+  { route: "/parliament", file: "parliament.png", ready: ".parliament-panel svg circle" },
+  { route: "/charts/votes", file: "votes-chart.png", ready: ".demo-surface" },
+  { route: "/charts/seats", file: "seats-chart.png", ready: ".demo-surface" },
+  { route: "/charts/composition", file: "composition-bar.png", ready: ".scs-card" },
+  { route: "/controls/swings", file: "swing-panels.png", ready: ".demo-surface" },
+];
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 900, height: 900 }, deviceScaleFactor: 2 });
+const page = await browser.newPage({
+  viewport: { width: 1100, height: 1200 },
+  deviceScaleFactor: 2,
+});
 
-async function shoot(el, file) {
+for (const { route, file, ready } of SHOTS) {
+  // Vite keeps an HMR websocket open, so `networkidle` never settles — wait on
+  // the DOM and the target selector instead.
+  await page.goto(`${BASE}${route}`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector(ready);
+  await page.evaluate(() => document.fonts.ready);
+  // Let arc/bar entry transitions settle before capturing.
+  await page.waitForTimeout(800);
+
+  const el = await page.$(".demo-surface");
+  if (!el) throw new Error(`no .demo-surface on ${route}`);
   await el.screenshot({ path: join(OUT, file) });
   console.log("wrote", file);
 }
-
-// 1. Hex cartogram (dark theme) — capture the map SVG with theme padding.
-await page.goto(`${BASE}/examples/vanilla.html`);
-await page.waitForSelector("#map polygon");
-await page.evaluate(() => {
-  const c = document.querySelector(".map-container");
-  c.style.background = "#111";
-  c.style.padding = "20px";
-  c.style.borderRadius = "8px";
-});
-await shoot(await page.$(".map-container"), "cartogram.png");
-
-// 2 & 3. Parliament arc + results table (light theme).
-await page.goto(`${BASE}/examples/parliament.html`);
-await page.waitForSelector("#arc circle");
-await page.evaluate(() => {
-  for (const sel of [".chart", "table.parliament-results-table"]) {
-    const el = document.querySelector(sel);
-    el.style.background = "#fff";
-    el.style.padding = "16px";
-  }
-});
-await shoot(await page.$(".chart"), "parliament-arc.png");
-await shoot(await page.$("table.parliament-results-table"), "results-table.png");
 
 await browser.close();

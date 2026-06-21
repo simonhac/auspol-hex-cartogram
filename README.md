@@ -1,11 +1,84 @@
-# Australian Federal Electorate Hex Cartogram
+# auspoligraphs
 
-A small collection of parliament-visualisation components, framework-agnostic at the core with thin React wrappers:
+Australian political graphs — a small library of parliament-visualisation components:
+a hex cartogram, a parliament seat-dot arc, votes/seats/composition charts, and interactive
+swing panels. Each component is framework-agnostic at the core (a pure layout function with no
+framework dependencies) with a thin, optional React wrapper.
 
-- **Hex cartogram** — equal-area hex maps for Australian federal House of Representatives electorates (2019, 2022, 2025). Each electorate is a single hexagon on a unified grid, giving every electorate exactly the same visual weight — unlike geographic maps where outback electorates dwarf inner-city ones. Based on the [ABC News federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results), which pioneered the format for Australian elections.
-- **Parliament arc** — a semicircular seat-dot composition chart for *any* parliament: pass any number of parties (name, colour, seats), in order, and it lays them out as clean left→right wedges. Comes with a matching results/legend table.
+**▶ [Live component gallery](https://simonhac.github.io/auspoligraphs/)** — every component
+rendered live, with toggles to watch them animate across the 2019, 2022 and 2025 federal results.
 
-Every component is built the same way: a pure layout function with no framework dependencies, consumed by an optional React component. Use the data and utilities directly in any JS/TS project, or drop in the React components.
+## Contents
+
+- [Components](#components)
+- [Install](#install)
+- [Quick start (React)](#quick-start-react)
+- [Quick start (vanilla JS)](#quick-start-vanilla-js)
+- [Data format](#data-format)
+- [API reference](#api-reference)
+- [Elections](#elections)
+- [Component gallery](#component-gallery)
+- [License](#license)
+
+## Components
+
+Each widget below links to its live, interactive demo in the gallery.
+
+### Hex cartogram
+
+An equal-area hex map of Australia's federal House of Representatives electorates (2019, 2022,
+2025). Each electorate is a single hexagon on a unified grid, giving every electorate exactly
+the same visual weight — unlike geographic maps where outback electorates dwarf inner-city ones.
+
+[Live demo →](https://simonhac.github.io/auspoligraphs/cartogram)
+
+<img src="docs/images/cartogram.png" alt="Hex cartogram of a federal election — one hexagon per electorate, coloured by state" width="520">
+
+### Parliament arc + results table
+
+A semicircular seat-dot composition chart for *any* parliament — pass any number of parties
+(name, colour, seats), in order, and it lays them out as clean left→right wedges — alongside a
+matching results/legend table with an optional change column.
+
+[Live demo →](https://simonhac.github.io/auspoligraphs/parliament)
+
+<img src="docs/images/parliament.png" alt="Parliament seat-dot arc and its results table" width="520">
+
+### Votes chart
+
+A primary-vote bar chart with vote counts, swing, and seats won. Hover a party badge for its
+full name.
+
+[Live demo →](https://simonhac.github.io/auspoligraphs/charts/votes)
+
+<img src="docs/images/votes-chart.png" alt="Primary-vote bar chart with vote counts, swing, and seats won" width="520">
+
+### Seats chart
+
+A seats-won bar chart with a majority line and a win/loss column.
+
+[Live demo →](https://simonhac.github.io/auspoligraphs/charts/seats)
+
+<img src="docs/images/seats-chart.png" alt="Seats-won bar chart with a majority line and a win/loss column" width="520">
+
+### Composition bar
+
+The whole chamber as one bar — one coloured segment per party, sized by seats, with a triangle
+marking the majority threshold.
+
+[Live demo →](https://simonhac.github.io/auspoligraphs/charts/composition)
+
+<img src="docs/images/composition-bar.png" alt="Chamber composition as a single horizontal bar with a majority-threshold marker" width="520">
+
+### Swing panels
+
+Interactive primary-swing sliders with auto/manual redistribution, a demographic-skew panel
+whose weighted average tracks the One Nation swing, and an editable preference-flow matrix —
+backed by the scenario engine exported from the core library.
+
+[Live demo →](https://simonhac.github.io/auspoligraphs/controls/swings)
+
+<img src="docs/images/swing-panels.png" alt="Interactive swing sliders, demographic-skew panel, and preference-flow matrix" width="420">
 
 ## Install
 
@@ -30,14 +103,12 @@ function App() {
 }
 ```
 
-<img src="docs/images/cartogram.png" alt="Hex cartogram of the 2022 federal election — one hexagon per electorate, coloured by state" width="360">
-
-## Quick start (parliament arc)
+The parliament arc and its results table work for any parliament, any size:
 
 ```tsx
 import { ParliamentArc, ResultsTable } from "auspoligraphs/react";
 
-// Parties in left→right order. Works for any parliament, any size.
+// Parties in left→right order.
 const parties = [
   { name: "Labor", color: "#DE3A30", seats: 76 },
   { name: "One Nation", color: "#F08A1D", seats: 53 },
@@ -55,11 +126,6 @@ function App() {
   );
 }
 ```
-
-<p>
-  <img src="docs/images/parliament-arc.png" alt="Semicircular parliament composition arc — one dot per seat, parties in left-to-right wedges" width="440"><br>
-  <img src="docs/images/results-table.png" alt="Results table — party swatch, name, seat columns, and a change column" width="440">
-</p>
 
 Prefer to do your own rendering? The pure layout function returns seat positions
 for any SVG/canvas:
@@ -156,7 +222,7 @@ where `size = 14` pixels. Grid bounds: col 0–13, row 0–19.
 
 ### React components
 
-Import from `auspoligraphs/react`:
+Import from `auspoligraphs/react`.
 
 **`<Cartogram>`** — full SVG map with state borders and hover effects.
 
@@ -202,6 +268,24 @@ Import from `auspoligraphs/react`:
 | `positiveColor` / `negativeColor` | `string` | green / red | Change colours |
 | `onPartyClick` | `(p, i) => void` | — | Row click handler |
 
+#### Charts
+
+These import the chart stylesheet — add `import "auspoligraphs/charts.css"` once.
+
+**`<VotesChart>`** — primary-vote bar chart. Key props: `parties: VotesParty[]` (`{ id, votePct, voteCount?, swing?, seatsWon? }`), `mode?: "fixed" | "editable"` (drag bars to edit), `defaults?`, `totalVotes?`, `onChange?`.
+
+**`<SeatsChart>`** — seats-won bar chart with a majority line. Key props: `parties: SeatsParty[]` (`{ id, seats, change?, ... }`), `totalSeats?`, `toWin?`, `mode?: "fixed" | "editable"`.
+
+**`<CompositionBar>`** — the chamber as one stacked bar. Key props: `parties: CompositionParty[]` (`{ code, name, color, seats }`), `total`, `toWin`, `ariaTitle?`.
+
+#### Scenario controls
+
+`<SwingPanel>`, `<DemographicSkewPanel>`, `<PreferenceFlowsPanel>`, and `<FlowMatrixEditor>`
+are interactive controls driven by the scenario engine exported from the core
+(`scenarioReducer`, `emptyScenario`, and helpers). They share a single scenario object and a
+`dispatch`. See [`site/pages/SwingsPage.tsx`](site/pages/SwingsPage.tsx) for a complete,
+working integration.
+
 ## Elections
 
 | Election | Seats | Changes from previous |
@@ -210,107 +294,31 @@ Import from `auspoligraphs/react`:
 | 2022 Federal | 151 | +Hawke (VIC), −Stirling (WA) |
 | 2025 Federal | 150 | Canonical baseline (matches ABC News) |
 
-### Silhouette changes
-
-**2019 → 2022**: VIC gains cell `[5,12]` for Hawke (Wannon and Corangamite shift to fill it). WA loses cell `[1,7]` (Stirling abolished). 148 surviving electorates stay put; 2 forced moves.
-
-**2022 → 2025**: NSW loses `[13,10]` (North Sydney abolished). VIC loses `[7,16]` (Higgins abolished). WA gains `[2,11]` for Bullwinkel (Curtin, Cowan, and Perth shift to accommodate). 146 surviving electorates stay put; 3 forced moves.
-
-## How the coordinates were derived
-
-### 2025: canonical baseline (from ABC News)
-
-The 2025 positions are taken directly from the [ABC News 2025 federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results) (`abcnews/elections-federal2025-lower-house` on GitHub). The ABC's per-state local coordinates are combined with their COUNTRY layout state offsets to produce a unified integer grid.
-
-This is the canonical reference layout. All other elections are derived from it.
-
-### 2022 and 2019: stability-first derivation (backwards)
-
-When electorates are added or removed between elections, we use a **stability-first** approach, working backwards from the 2025 baseline:
-
-1. Start from the 2025 baseline positions.
-2. **Abolished electorates** (seats that existed in the earlier election but not 2025): add them back on a new cell adjacent to their state's silhouette.
-3. **New electorates** (seats that exist in 2025 but not the earlier election): remove them and their cell.
-4. **Surviving electorates keep their position** unless a forced move is needed to avoid leaving a hole in the silhouette. Forced moves cascade from the hole to the nearest edge cell.
-
-This produces minimal visual disruption between elections — critical for comparing results across years.
-
-| Transition | Stayed | Moved | New | Removed |
-|------------|--------|-------|-----|---------|
-| 2019 → 2022 | 148 | **2** | 1 (Hawke) | 1 (Stirling) |
-| 2022 → 2025 | 146 | **3** | 1 (Bullwinkel) | 2 (Higgins, North Sydney) |
-
-## Why not the Hungarian algorithm?
-
-We investigated using the [Hungarian algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm) to optimally assign electorates to hex cells based on geographic centroids. The results were instructive:
-
-### Geographic accuracy: Hungarian wins slightly
-
-| Metric | Hand-crafted | Hungarian | Difference |
-|--------|-------------|-----------|------------|
-| RMS positional error | 69.2 px | 61.5 px | +12.5% |
-| Mean error | 58.1 px | 52.3 px | +11.1% |
-| Max error | 201.5 px | 143.4 px | +40.6% |
-
-The hand-crafted layout is ~12% worse on average — roughly 0.3 hex-widths per electorate. For a cartogram that inherently distorts geography (an electorate covering half of Western Australia is the same size as one covering 3 km² of inner Melbourne), this is a reasonable trade-off.
-
-### Stability: Hungarian fails catastrophically
-
-When run independently per election, the Hungarian algorithm produced **113 unnecessary moves** between 2019 and 2022 — reshuffling nearly every electorate even though only 2 seats changed.
-
-| Transition | Stability-first | Hungarian |
-|------------|----------------|-----------|
-| 2019 → 2022 moves | **0** | 113 |
-| Unnecessary moves | **0** | **112** |
-
-This happens because the algorithm optimises each election in isolation. A tiny shift in centroid positions cascades into swaps across entire states.
-
-### Our decision
-
-**Stability over optimality.** The 12% geographic error is acceptable. The 113-electorate disruption is not. Users comparing election results across years need electorates in predictable positions.
-
-The Hungarian algorithm remains useful for validation (checking the hand-crafted layout isn't wildly wrong) and for initial placement of new electorates. But for cross-election consistency, stability-first wins.
-
-## Relationship to the ABC
-
-Our 2025 baseline is taken directly from the ABC's hex map ([source](https://github.com/abcnews/elections-federal2025-lower-house)). The coordinates are identical for the 2025 election.
-
-The ABC also published a hex map for the [2022 election](https://www.abc.net.au/news/2022-05-20/federal-election-map-lying/101076016), but our 2022 layout differs because it is derived backwards from 2025 using stability-first (all surviving electorates keep their 2025 positions). The ABC has not published a hex map for 2019.
-
-## Adding a new election
-
-After a federal redistribution:
-
-1. Identify added, removed, and renamed electorates.
-2. For each state that gained/lost seats, decide which cells to add/remove from the silhouette.
-3. Apply the stability-first rule: surviving electorates keep their positions.
-4. For forced moves, prefer adjacent cells. Use Hungarian within the affected state if there are many.
-5. Add the new election to `data/elections.json`.
-6. Run tests: `npm test`
+The 2025 layout is taken directly from the [ABC News 2025 federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results); earlier years are derived backwards from it
+using a stability-first rule so electorates stay in predictable positions across elections. For
+the full rationale — coordinate derivation, the silhouette changes between elections, why the
+layout is hand-crafted rather than solved with the Hungarian algorithm, the relationship to the
+ABC's map, and how to add a new election — see **[Cartogram design notes](docs/cartogram-design.md)**.
 
 ## Component gallery
 
-A static gallery showcasing every component live — the hex cartogram, the
-parliament arc + results table, and the votes / seats / composition charts (each
-with an election toggle to demo its animation across the 2019, 2022 and 2025
-federal results) — lives in [`site/`](site/) and deploys to GitHub Pages.
+The [live gallery](https://simonhac.github.io/auspoligraphs/) showcasing every component lives
+in [`site/`](site/) (Vite + React Router) and deploys to GitHub Pages on every push to `main`.
 
-- `npm run dev` — run the gallery locally (Vite)
+- `npm run dev` — run the gallery locally (Vite, http://localhost:5173)
 - `npm run build:site` — build the static site to `dist-site/`
 
-The component screenshots above (`docs/images/`) are captured from these pages
-with headless Chromium. To regenerate them, serve the repo root and run the
-screenshot script:
+The component screenshots in this README (`docs/images/`) are captured from the gallery pages
+with headless Chromium. To regenerate them, start the dev server and run the screenshot script:
 
 ```bash
-python3 -m http.server 8000 &
+npm run dev &
 node tools/screenshot-examples.mjs
 ```
 
-The `<ParliamentArc>` defaults are tuned to reproduce the ABC reference chart to
-RMS 0.02% of the outer radius; the measurement harness that established this lives
-in [`tools/arc-fidelity/`](tools/arc-fidelity/) and renders
-`examples/parliament.html`.
+The `<ParliamentArc>` defaults are tuned to reproduce the ABC reference chart to RMS 0.02% of
+the outer radius; the measurement harness that established this lives in
+[`tools/arc-fidelity/`](tools/arc-fidelity/) and renders `examples/parliament.html`.
 
 ## License
 
