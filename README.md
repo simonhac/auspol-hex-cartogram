@@ -291,9 +291,9 @@ After a federal redistribution:
 ## Component gallery
 
 A static gallery showcasing every component live — the hex cartogram, the
-parliament arc + results table, and the votes / seats / chamber charts (each
-with an A/B toggle to demo its animation) — lives in [`site/`](site/) and
-deploys to GitHub Pages.
+parliament arc + results table, and the votes / seats / composition charts (each
+with an election toggle to demo its animation across the 2019, 2022 and 2025
+federal results) — lives in [`site/`](site/) and deploys to GitHub Pages.
 
 - `npm run dev` — run the gallery locally (Vite)
 - `npm run build:site` — build the static site to `dist-site/`

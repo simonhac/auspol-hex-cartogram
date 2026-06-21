@@ -1,36 +1,41 @@
-import type { Which } from "./useTwoState";
+export interface ToggleOption<T extends string = string> {
+  value: T;
+  label: string;
+}
 
-export interface ToggleProps {
-  labelA: string;
-  labelB: string;
-  which: Which;
-  onChange: (which: Which) => void;
+export interface ToggleProps<T extends string> {
+  /** Two or more options rendered left→right. */
+  options: ToggleOption<T>[];
+  /** Currently-selected option value. */
+  value: T;
+  onChange: (value: T) => void;
   /** Optional caption shown before the control. */
   label?: string;
 }
 
-/** A two-option segmented control driving the A/B animation toggle. */
-export function Toggle({ labelA, labelB, which, onChange, label }: ToggleProps) {
+/** An N-option segmented control. Re-rendering with a new value lets each
+ *  chart animate between datasets. Used by every chart demo. */
+export function Toggle<T extends string>({
+  options,
+  value,
+  onChange,
+  label,
+}: ToggleProps<T>) {
   return (
     <div className="toggle-field">
       {label && <span className="toggle-label">{label}</span>}
-      <div className="seg" role="group" aria-label={label ?? "state"}>
-        <button
-          type="button"
-          className={`seg-btn${which === "a" ? " is-active" : ""}`}
-          aria-pressed={which === "a"}
-          onClick={() => onChange("a")}
-        >
-          {labelA}
-        </button>
-        <button
-          type="button"
-          className={`seg-btn${which === "b" ? " is-active" : ""}`}
-          aria-pressed={which === "b"}
-          onClick={() => onChange("b")}
-        >
-          {labelB}
-        </button>
+      <div className="seg" role="group" aria-label={label ?? "options"}>
+        {options.map((o) => (
+          <button
+            key={o.value}
+            type="button"
+            className={`seg-btn${value === o.value ? " is-active" : ""}`}
+            aria-pressed={value === o.value}
+            onClick={() => onChange(o.value)}
+          >
+            {o.label}
+          </button>
+        ))}
       </div>
     </div>
   );

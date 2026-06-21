@@ -31,7 +31,11 @@ export {
   default as OverUnderIndicator,
   type OverUnderIndicatorProps,
 } from "./charts/OverUnderIndicator";
-export { ChamberCharts, type ChamberChartsProps } from "./charts/ChamberCharts";
+export {
+  CompositionBar,
+  type CompositionParty,
+  type CompositionBarProps,
+} from "./charts/CompositionBar";
 export {
   Tooltip,
   TooltipTrigger,

@@ -1,19 +1,22 @@
+import { useState } from "react";
 import { VotesChart } from "auspoligraphs/react";
 import { Demo } from "../components/Demo";
 import { Toggle } from "../components/Toggle";
-import { useTwoState } from "../components/useTwoState";
-import { VOTES_2018, VOTES_2022 } from "../fixtures/charts";
+import {
+  VOTES_BY_YEAR,
+  ELECTION_YEARS,
+  type ElectionYear,
+} from "../fixtures/charts";
 
 export function VotesChartPage() {
-  const { value: parties, which, setWhich } = useTwoState(VOTES_2018, VOTES_2022, "b");
+  const [year, setYear] = useState<ElectionYear>("2025");
 
   const controls = (
     <Toggle
       label="Election"
-      labelA="2018"
-      labelB="2022"
-      which={which}
-      onChange={setWhich}
+      options={ELECTION_YEARS.map((y) => ({ value: y, label: y }))}
+      value={year}
+      onChange={setYear}
     />
   );
 
@@ -24,13 +27,13 @@ export function VotesChartPage() {
         <>
           Primary-vote bar chart with vote counts, swing, and seats won. Toggle between
           elections to watch the bars and swing values animate. Hover a party badge for its
-          full name. Data is illustrative.
+          full name. Federal House of Representatives first-preference vote.
         </>
       }
       controls={controls}
       maxWidth={680}
     >
-      <VotesChart parties={parties} mode="fixed" />
+      <VotesChart parties={VOTES_BY_YEAR[year]} mode="fixed" />
     </Demo>
   );
 }

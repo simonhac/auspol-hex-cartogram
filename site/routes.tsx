@@ -4,7 +4,7 @@ import { CartogramPage } from "./pages/CartogramPage";
 import { ParliamentPage } from "./pages/ParliamentPage";
 import { VotesChartPage } from "./pages/VotesChartPage";
 import { SeatsChartPage } from "./pages/SeatsChartPage";
-import { ChamberChartsPage } from "./pages/ChamberChartsPage";
+import { CompositionBarPage } from "./pages/CompositionBarPage";
 
 export interface RouteDef {
   path: string;
@@ -27,9 +27,9 @@ export const routes: RouteDef[] = [
   { path: "/charts/votes", label: "Votes Chart", group: "Charts", element: <VotesChartPage /> },
   { path: "/charts/seats", label: "Seats Chart", group: "Charts", element: <SeatsChartPage /> },
   {
-    path: "/charts/chamber",
-    label: "Chamber Charts",
+    path: "/charts/composition",
+    label: "Composition Bar",
     group: "Charts",
-    element: <ChamberChartsPage />,
+    element: <CompositionBarPage />,
   },
 ];

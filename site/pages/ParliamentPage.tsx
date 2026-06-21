@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { ParliamentArc, ResultsTable } from "auspoligraphs/react";
 import { Demo } from "../components/Demo";
-import { Toggle } from "../components/Toggle";
-import { useTwoState } from "../components/useTwoState";
+import { Toggle, type ToggleOption } from "../components/Toggle";
 import {
   RESULTS_PARTIES,
   PREDICTED_PARTIES,
@@ -10,11 +10,16 @@ import {
   PREDICTED_COLUMN,
 } from "../fixtures/parliament";
 
+type Scenario = "results" | "predicted";
+
+const SCENARIO_OPTIONS: ToggleOption<Scenario>[] = [
+  { value: "results", label: "Result" },
+  { value: "predicted", label: "Predicted" },
+];
+
 export function ParliamentPage() {
-  const { value: arcParties, which, setWhich } = useTwoState(
-    RESULTS_PARTIES,
-    PREDICTED_PARTIES,
-  );
+  const [scenario, setScenario] = useState<Scenario>("results");
+  const arcParties = scenario === "results" ? RESULTS_PARTIES : PREDICTED_PARTIES;
 
   const tableParties = PARLIAMENT_PARTIES.map((p) => ({
     id: p.id,
@@ -26,10 +31,9 @@ export function ParliamentPage() {
   const controls = (
     <Toggle
       label="Scenario"
-      labelA="Result"
-      labelB="Predicted"
-      which={which}
-      onChange={setWhich}
+      options={SCENARIO_OPTIONS}
+      value={scenario}
+      onChange={setScenario}
     />
   );
 
