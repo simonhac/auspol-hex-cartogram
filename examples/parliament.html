@@ -89,7 +89,7 @@ const PARTIES = [
 ];
 
 // --- Arc layout (port of computeArcLayout from src/arc-utils.ts) ---
-const OUTER = 250, INNER_RATIO = 0.14, SEAT_RATIO = 0.42;
+const OUTER = 250, INNER_RATIO = 0.229, SEAT_RATIO = 0.48;
 
 function autoRows(total, f) {
   const k = (2 * (1 - f)) / (Math.PI * (1 + f));
@@ -99,16 +99,20 @@ function rowRadii(rows, inner, outer) {
   if (rows === 1) return [(inner + outer) / 2];
   return Array.from({ length: rows }, (_, i) => inner + ((outer - inner) * i) / (rows - 1));
 }
-function distribute(total, radii) {
-  const sum = radii.reduce((a, b) => a + b, 0);
-  if (!sum) return radii.map(() => 0);
-  const raw = radii.map((r) => (total * r) / sum);
+// Largest-remainder split of `total` across rows in proportion to `weights`.
+function distribute(total, weights) {
+  const sum = weights.reduce((a, b) => a + b, 0);
+  if (!sum) return weights.map(() => 0);
+  const raw = weights.map((w) => (total * w) / sum);
   const counts = raw.map(Math.floor);
   let rem = total - counts.reduce((a, b) => a + b, 0);
   const order = raw.map((v, i) => ({ i, frac: v - Math.floor(v) })).sort((a, b) => b.frac - a.frac);
   for (let k = 0; rem > 0; k++, rem--) counts[order[k % order.length].i]++;
   return counts;
 }
+// "linear" distribution: counts proportional to row index (inner rows sparser),
+// matching the reference. Pass radii instead for an equal-spacing arc.
+const rowWeights = (rows) => Array.from({ length: rows }, (_, i) => i + 1);
 
 function computeArcLayout(parties) {
   const inner = OUTER * INNER_RATIO;
@@ -117,9 +121,9 @@ function computeArcLayout(parties) {
 
   let rows = Math.min(autoRows(total, INNER_RATIO), total);
   let radii = rowRadii(rows, inner, OUTER);
-  let perRow = distribute(total, radii);
+  let perRow = distribute(total, rowWeights(rows));
   while (rows > 1 && perRow.some((n) => n === 0)) {
-    rows--; radii = rowRadii(rows, inner, OUTER); perRow = distribute(total, radii);
+    rows--; radii = rowRadii(rows, inner, OUTER); perRow = distribute(total, rowWeights(rows));
   }
 
   const placed = [];

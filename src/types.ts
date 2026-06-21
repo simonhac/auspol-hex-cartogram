@@ -65,12 +65,21 @@ export interface ArcLayoutOptions {
   rows?: number;
   /** Outer radius in pixels. Default 250. */
   outerRadius?: number;
-  /** Inner radius as a fraction of the outer radius (0–1). Default 0.45. */
+  /** Inner radius as a fraction of the outer radius (0–1). Default 0.229. */
   innerRadiusRatio?: number;
-  /** Seat dot radius as a fraction of the available spacing. Default 0.42. */
+  /** Seat dot radius as a fraction of the available spacing. Default 0.48. */
   seatRadiusRatio?: number;
   /** Explicit seat dot radius in pixels (overrides `seatRadiusRatio`). */
   seatRadius?: number;
+  /**
+   * Seats-per-row distribution. Default `"linear"`.
+   *
+   * - `"linear"`: counts proportional to row index (inner rows sparser than
+   *   outer rows) — matches the ABC reference chart.
+   * - `"proportional"`: counts proportional to row radius (≈ equal dot spacing
+   *   in every row).
+   */
+  distribution?: "linear" | "proportional";
 }
 
 /** Fully resolved parliament arc layout. */

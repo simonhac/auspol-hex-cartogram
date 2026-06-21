@@ -14,10 +14,18 @@ import type { ArcLayout, ArcLayoutOptions, ArcSeat, Party } from "./types";
 
 /** Default outer radius of the arc in pixels. */
 export const ARC_OUTER_RADIUS = 250;
-/** Default inner radius as a fraction of the outer radius. */
-export const ARC_INNER_RATIO = 0.14;
+/**
+ * Default inner radius as a fraction of the outer radius.
+ *
+ * Reverse-engineered from the ABC reference chart (see `tools/arc-fidelity`):
+ * the reference's inner row sits at 0.229·Rout. This controls only the visual
+ * hole — the seats-per-row split is governed by {@link ArcLayoutOptions.distribution}.
+ */
+export const ARC_INNER_RATIO = 0.229;
 /** Default seat dot radius as a fraction of the available spacing. */
-export const ARC_SEAT_RATIO = 0.42;
+export const ARC_SEAT_RATIO = 0.48;
+/** Default seats-per-row distribution. See {@link ArcLayoutOptions.distribution}. */
+export const ARC_DISTRIBUTION = "linear" as const;
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
@@ -50,14 +58,14 @@ function rowRadii(rows: number, innerRadius: number, outerRadius: number): numbe
 }
 
 /**
- * Distribute `total` seats across rows proportional to each row's radius,
- * using the largest-remainder method so the parts sum exactly to `total`.
+ * Distribute `total` across rows in proportion to `weights`, using the
+ * largest-remainder method so the parts sum exactly to `total`.
  */
-function distributeSeats(total: number, radii: number[]): number[] {
-  const sum = radii.reduce((a, b) => a + b, 0);
-  if (sum === 0) return radii.map(() => 0);
+function largestRemainder(total: number, weights: number[]): number[] {
+  const sum = weights.reduce((a, b) => a + b, 0);
+  if (sum === 0) return weights.map(() => 0);
 
-  const raw = radii.map((r) => (total * r) / sum);
+  const raw = weights.map((w) => (total * w) / sum);
   const counts = raw.map(Math.floor);
   let remaining = total - counts.reduce((a, b) => a + b, 0);
 
@@ -69,6 +77,27 @@ function distributeSeats(total: number, radii: number[]): number[] {
     counts[byFraction[k % byFraction.length].i]++;
   }
   return counts;
+}
+
+/**
+ * Per-row seat counts (innermost first) for a given distribution.
+ *
+ * - `"linear"`: counts proportional to the row index (inner row → 1 share,
+ *   outer row → `rows` shares). This makes the inner rows sparser than the outer
+ *   rows — the look of the ABC reference chart, and the default.
+ * - `"proportional"`: counts proportional to each row's radius (≈ equal dot
+ *   spacing in every row).
+ */
+function distributeSeats(
+  total: number,
+  radii: number[],
+  distribution: "linear" | "proportional",
+): number[] {
+  const weights =
+    distribution === "proportional"
+      ? radii
+      : radii.map((_, i) => i + 1);
+  return largestRemainder(total, weights);
 }
 
 /**
@@ -90,6 +119,7 @@ export function computeArcLayout(
   const outerRadius = options.outerRadius ?? ARC_OUTER_RADIUS;
   const innerRatio = clamp(options.innerRadiusRatio ?? ARC_INNER_RATIO, 0.05, 0.95);
   const seatRatio = options.seatRadiusRatio ?? ARC_SEAT_RATIO;
+  const distribution = options.distribution ?? ARC_DISTRIBUTION;
   const innerRadius = outerRadius * innerRatio;
 
   const total = parties.reduce((sum, p) => sum + seatCount(p), 0);
@@ -112,11 +142,11 @@ export function computeArcLayout(
   let rows = Math.max(1, options.rows ?? autoRows(total, innerRatio));
   rows = Math.min(rows, total);
   let radii = rowRadii(rows, innerRadius, outerRadius);
-  let seatsPerRow = distributeSeats(total, radii);
+  let seatsPerRow = distributeSeats(total, radii, distribution);
   while (rows > 1 && seatsPerRow.some((n) => n === 0)) {
     rows--;
     radii = rowRadii(rows, innerRadius, outerRadius);
-    seatsPerRow = distributeSeats(total, radii);
+    seatsPerRow = distributeSeats(total, radii, distribution);
   }
 
   // Build seat positions row by row (angle runs π → 0, i.e. left → right).

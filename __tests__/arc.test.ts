@@ -29,6 +29,23 @@ describe("computeArcLayout", () => {
     expect(layout.seatsPerRow.every((n) => n > 0)).toBe(true);
   });
 
+  it("matches the reference chart geometry (see tools/arc-fidelity)", () => {
+    const layout = computeArcLayout(AU_PREDICTED);
+    // Reverse-engineered from the ABC reference: inner ring at 0.229·Rout,
+    // dot radius 0.046·Rout. Verified to RMS 0.02% of the outer radius.
+    expect(layout.innerRadius / layout.outerRadius).toBeCloseTo(0.229, 3);
+    expect(layout.seatRadius / layout.outerRadius).toBeCloseTo(0.046, 3);
+  });
+
+  it("supports a proportional (equal-spacing) distribution", () => {
+    const linear = computeArcLayout(AU_PREDICTED);
+    const prop = computeArcLayout(AU_PREDICTED, { distribution: "proportional" });
+    expect(prop.seats).toHaveLength(150);
+    // Proportional packs more seats into the inner rows than linear does.
+    expect(prop.seatsPerRow[0]).toBeGreaterThan(linear.seatsPerRow[0]);
+    expect(prop.seatsPerRow.reduce((a, b) => a + b, 0)).toBe(150);
+  });
+
   it("assigns each seat to the right party in input order", () => {
     const layout = computeArcLayout(AU_PREDICTED);
     const counts = new Map<number, number>();

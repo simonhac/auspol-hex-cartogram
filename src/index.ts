@@ -30,6 +30,7 @@ export {
   ARC_OUTER_RADIUS,
   ARC_INNER_RATIO,
   ARC_SEAT_RATIO,
+  ARC_DISTRIBUTION,
 } from "./arc-utils";
 
 // Election datasets (all loaded from elections.json)

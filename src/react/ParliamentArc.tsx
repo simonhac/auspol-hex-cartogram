@@ -11,10 +11,12 @@ export interface ParliamentArcProps {
   outerRadius?: number;
   /** Inner radius as a fraction of the outer radius (0–1). Default 0.45. */
   innerRadiusRatio?: number;
-  /** Seat dot radius as a fraction of the available spacing. Default 0.42. */
+  /** Seat dot radius as a fraction of the available spacing. Default 0.48. */
   seatRadiusRatio?: number;
   /** Explicit seat dot radius in pixels (overrides `seatRadiusRatio`). */
   seatRadius?: number;
+  /** Seats-per-row distribution: `"linear"` (default) or `"proportional"`. */
+  distribution?: "linear" | "proportional";
   /** Animate dots when seat counts change. Default true. */
   animate?: boolean;
   /** Transition duration in milliseconds when `animate` is set. Default 500. */
@@ -45,6 +47,7 @@ export function ParliamentArc({
   innerRadiusRatio,
   seatRadiusRatio,
   seatRadius,
+  distribution,
   animate = true,
   transitionMs = 500,
   highlightOnHover = true,
@@ -63,8 +66,9 @@ export function ParliamentArc({
         innerRadiusRatio,
         seatRadiusRatio,
         seatRadius,
+        distribution,
       }),
-    [parties, rows, outerRadius, innerRadiusRatio, seatRadiusRatio, seatRadius],
+    [parties, rows, outerRadius, innerRadiusRatio, seatRadiusRatio, seatRadius, distribution],
   );
 
   const getTooltip = tooltip ?? ((seat: ArcSeat) => seat.party.name);

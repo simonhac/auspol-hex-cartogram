@@ -119,7 +119,7 @@ where `size = 14` pixels. Grid bounds: col 0–13, row 0–19.
 | `Party` | Input: `{ id?, name, color, seats }` |
 | `ArcSeat` | Resolved seat: `{ index, row, angle, x, y, party, partyIndex }` |
 | `ArcLayout` | Layout: `{ seats, rows, seatsPerRow, seatRadius, innerRadius, outerRadius, width, height, viewBox }` |
-| `ArcLayoutOptions` | Tuning: `{ rows?, outerRadius?, innerRadiusRatio?, seatRadiusRatio?, seatRadius? }` |
+| `ArcLayoutOptions` | Tuning: `{ rows?, outerRadius?, innerRadiusRatio?, distribution?, seatRadiusRatio?, seatRadius? }` |
 
 ### Functions
 
@@ -173,8 +173,9 @@ Import from `auspol-hex-cartogram/react`:
 | `parties` | `Party[]` | — | Parties in left→right order (required) |
 | `rows` | `number` | auto | Concentric rows (auto-derived from seat count) |
 | `outerRadius` | `number` | `250` | Outer radius in pixels |
-| `innerRadiusRatio` | `number` | `0.14` | Inner radius as a fraction of outer (small hole → sparse inner arc) |
-| `seatRadiusRatio` | `number` | `0.42` | Dot radius as a fraction of spacing |
+| `innerRadiusRatio` | `number` | `0.229` | Inner radius as a fraction of outer (the central hole) |
+| `distribution` | `"linear" \| "proportional"` | `"linear"` | Seats per row: `linear` (∝ row index, sparse inner rows — matches the reference) or `proportional` (∝ radius, equal spacing) |
+| `seatRadiusRatio` | `number` | `0.48` | Dot radius as a fraction of spacing |
 | `seatRadius` | `number` | — | Explicit dot radius (overrides ratio) |
 | `animate` | `boolean` | `true` | Animate dots when seat counts change |
 | `transitionMs` | `number` | `500` | Transition duration |
@@ -285,6 +286,10 @@ After a federal redistribution:
 - `examples/vanilla.html` — simple interactive cartogram with election switcher
 - `examples/analysis.html` — transition analysis showing movements, geographic error, and state seat counts
 - `examples/parliament.html` — parliament composition arc with a Results↔Predicted toggle and results table
+
+The `<ParliamentArc>` defaults are tuned to reproduce the ABC reference chart to
+RMS 0.02% of the outer radius; the measurement harness that established this lives
+in [`tools/arc-fidelity/`](tools/arc-fidelity/).
 
 ## License
 
