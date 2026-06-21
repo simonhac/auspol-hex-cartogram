@@ -38,6 +38,16 @@ const seatsFor = (key: "results" | "predicted"): Party[] =>
 export const RESULTS_PARTIES = seatsFor("results");
 export const PREDICTED_PARTIES = seatsFor("predicted");
 
+/**
+ * Preset swatches for the Custom-mode colour picker: the seven currently
+ * incumbent party colours (derived from {@link PARLIAMENT_PARTIES} so they
+ * never drift) plus teal — the convention for "teal independents".
+ */
+export const PRESET_PALETTE: string[] = [
+  ...PARLIAMENT_PARTIES.map((p) => p.color),
+  "#3D8E8E",
+];
+
 /** ResultsTable columns + change. */
 export const RESULTS_COLUMN: ResultsColumn = {
   header: "Result",
