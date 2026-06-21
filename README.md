@@ -30,6 +30,8 @@ function App() {
 }
 ```
 
+<img src="docs/images/cartogram.png" alt="Hex cartogram of the 2022 federal election — one hexagon per electorate, coloured by state" width="360">
+
 ## Quick start (parliament arc)
 
 ```tsx
@@ -53,6 +55,11 @@ function App() {
   );
 }
 ```
+
+<p>
+  <img src="docs/images/parliament-arc.png" alt="Semicircular parliament composition arc — one dot per seat, parties in left-to-right wedges" width="440"><br>
+  <img src="docs/images/results-table.png" alt="Results table — party swatch, name, seat columns, and a change column" width="440">
+</p>
 
 Prefer to do your own rendering? The pure layout function returns seat positions
 for any SVG/canvas:
@@ -286,6 +293,15 @@ After a federal redistribution:
 - `examples/vanilla.html` — simple interactive cartogram with election switcher
 - `examples/analysis.html` — transition analysis showing movements, geographic error, and state seat counts
 - `examples/parliament.html` — parliament composition arc with a Results↔Predicted toggle and results table
+
+The component screenshots above (`docs/images/`) are captured from these pages
+with headless Chromium. To regenerate them, serve the repo root and run the
+screenshot script:
+
+```bash
+python3 -m http.server 8000 &
+node tools/screenshot-examples.mjs
+```
 
 The `<ParliamentArc>` defaults are tuned to reproduce the ABC reference chart to
 RMS 0.02% of the outer radius; the measurement harness that established this lives
