@@ -5,7 +5,7 @@
  * No framework dependencies — just data and pure utility functions.
  *
  * Usage:
- *   import { FED_2025, cellToPixel, computeStateBorders } from "auspol-hex-cartogram";
+ *   import { FED_2025, cellToPixel, computeStateBorders } from "auspoligraphs";
  *   const { electorates } = FED_2025;
  */
 

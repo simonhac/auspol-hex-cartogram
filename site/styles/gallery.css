@@ -1,0 +1,273 @@
+/* =====================================================================
+   Gallery chrome — layout, sidebar, demo cards, controls.
+   Defines the font-family CSS variables that charts.css references, but
+   does NOT redefine the chart palette (--paper / --ink / etc.).
+   ===================================================================== */
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --g-bg: #f6f2ea;
+  --g-card: #fffdf9;
+  --g-ink: #1a1714;
+  --g-ink-2: #3a342d;
+  --g-ink-3: #6e655a;
+  --g-rule: #e2dac9;
+  --g-rust: #8b3a1f;
+  --sidebar-bg: #1f1b17;
+  --sidebar-fg: #ece5d6;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--g-bg);
+  color: var(--g-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- App shell ---------- */
+.app {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  flex: 0 0 248px;
+  width: 248px;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-fg);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0 18px;
+}
+.sidebar-head { padding: 0 24px 22px; }
+.sidebar-title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.sidebar-sub {
+  margin-top: 2px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a8f80;
+}
+.sidebar-nav { flex: 1; padding: 0 12px; overflow-y: auto; }
+.nav-group { margin-top: 18px; }
+.nav-group-head {
+  padding: 0 12px 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a7f70;
+}
+.nav-link {
+  display: block;
+  padding: 7px 12px;
+  border-radius: 7px;
+  color: #cfc6b6;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.3;
+  transition: background 0.12s, color 0.12s;
+}
+.nav-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+  box-shadow: inset 2px 0 0 var(--g-rust);
+}
+.sidebar-foot {
+  padding: 14px 24px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #8a7f70;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 10px;
+}
+
+/* ---------- Content ---------- */
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 48px clamp(24px, 5vw, 72px) 80px;
+}
+
+/* ---------- Demo ---------- */
+.demo { max-width: 900px; }
+.demo-head { margin-bottom: 22px; }
+.demo-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.demo-desc {
+  margin: 10px 0 0;
+  max-width: 60ch;
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--g-ink-2);
+}
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.demo-surface {
+  background: var(--g-card);
+  border: 1px solid var(--g-rule);
+  border-radius: 14px;
+  padding: clamp(20px, 4vw, 40px);
+  box-shadow: 0 1px 2px rgba(26, 23, 20, 0.04);
+}
+.demo-stage { margin: 0 auto; }
+
+/* ---------- Segmented toggle ---------- */
+.toggle-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.toggle-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--g-ink-3);
+}
+.seg {
+  display: inline-flex;
+  background: #ece5d6;
+  border: 1px solid var(--g-rule);
+  border-radius: 9px;
+  padding: 3px;
+  gap: 2px;
+}
+.seg-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--g-ink-3);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+}
+.seg-btn:hover { color: var(--g-ink); }
+.seg-btn.is-active {
+  background: var(--g-card);
+  color: var(--g-ink);
+  box-shadow: 0 1px 2px rgba(26, 23, 20, 0.12);
+}
+
+/* ---------- Home ---------- */
+.home { max-width: 860px; }
+.home-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.home-lede {
+  margin: 14px 0 34px;
+  max-width: 62ch;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--g-ink-2);
+}
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 22px;
+  background: var(--g-card);
+  border: 1px solid var(--g-rule);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--g-ink);
+  transition: border-color 0.12s, transform 0.12s, box-shadow 0.12s;
+}
+.home-card:hover {
+  border-color: #cdbfa6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(26, 23, 20, 0.08);
+}
+.home-card-label { font-size: 16px; font-weight: 700; }
+.home-card-group {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--g-rust);
+}
+
+/* ---------- Parliament panel (arc + table together) ---------- */
+.parliament-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+.parliament-panel > svg { max-width: 560px; }
+
+.parliament-results-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 560px;
+  font-size: 15px;
+}
+.parliament-results-table th,
+.parliament-results-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--g-rule);
+}
+.parliament-results-table thead th {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--g-ink-3);
+  border-bottom: 1.5px solid #d8cfbb;
+}
+.parliament-results-table tbody tr:last-child td { border-bottom: 0; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 760px) {
+  .app { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    flex-basis: auto;
+    height: auto;
+    position: static;
+    padding: 18px 0;
+  }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; }
+  .nav-group { margin-top: 8px; }
+  .content { padding: 28px 20px 60px; }
+}

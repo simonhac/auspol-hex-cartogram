@@ -1,7 +1,7 @@
 {
-  "name": "auspol-hex-cartogram",
+  "name": "auspoligraphs",
   "version": "2.0.0",
-  "description": "Equal-area hex cartogram of Australian federal electorates",
+  "description": "Australian political graphs — hex cartogram, parliament arc, votes & seats charts",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -18,26 +18,41 @@
       "import": "./dist/react/index.js",
       "require": "./dist/react/index.cjs"
     },
+    "./charts.css": "./src/styles/charts.css",
     "./data/elections.json": "./data/elections.json"
   },
-  "files": ["dist", "data"],
-  "sideEffects": false,
+  "files": ["dist", "data", "src/styles"],
+  "sideEffects": ["**/*.css"],
   "peerDependencies": {
     "react": ">=17"
   },
   "peerDependenciesMeta": {
     "react": { "optional": true }
   },
+  "dependencies": {
+    "@radix-ui/react-tooltip": "^1.1.8"
+  },
   "devDependencies": {
-    "@types/react": "^18.3.23",
-    "react": "^18.3.1",
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0",
+    "@fontsource/source-serif-4": "^5.1.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.0",
     "tsup": "^8.0.0",
     "typescript": "^5.8.3",
+    "vite": "^6.0.0",
     "vitest": "^3.2.1"
   },
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "dev": "vite",
+    "build:site": "vite build",
+    "preview": "vite preview"
   }
 }

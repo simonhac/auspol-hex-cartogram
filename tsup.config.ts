@@ -14,6 +14,6 @@ export default defineConfig([
     format: ["esm", "cjs"],
     dts: true,
     sourcemap: true,
-    external: ["react", "react/jsx-runtime"],
+    external: ["react", "react/jsx-runtime", "@radix-ui/react-tooltip"],
   },
 ]);
