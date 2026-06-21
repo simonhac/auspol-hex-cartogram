@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parliament Composition — Seat Arc</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #fff; color: #1a1a1a; padding: 32px 20px; display: flex; justify-content: center;
+  }
+  .panel { width: 100%; max-width: 480px; }
+
+  /* Shared title treatment: bold heading with a thin rule extending right */
+  .panel-title {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 20px;
+  }
+  .panel-title::after { content: ""; flex: 1; height: 1px; background: #e2e2e2; }
+
+  /* Results / Predicted toggle */
+  .toggle-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 4px; }
+  .toggle-label { text-align: center; line-height: 1.25; cursor: pointer; user-select: none; }
+  .toggle-label .lead { font-size: 0.82rem; font-weight: 700; color: #b0b0b0; transition: color 0.2s; }
+  .toggle-label .sub { font-size: 0.7rem; color: #b8b8b8; }
+  .toggle-label[data-active="true"] .lead { color: #1a1a1a; }
+  .switch { width: 58px; height: 30px; border-radius: 15px; background: #cfcfcf; position: relative; cursor: pointer; flex: none; transition: background 0.2s; }
+  .switch.on { background: #1a1a1a; }
+  .switch .knob { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.35); transition: transform 0.22s ease; }
+  .switch.on .knob { transform: translateX(28px); }
+
+  .chart { width: 100%; }
+  .chart svg { width: 100%; display: block; }
+  .chart circle { transition: fill 0.5s ease, transform 0.5s ease, opacity 0.5s ease; }
+
+  .seat-count { text-align: center; font-size: 1.05rem; font-weight: 700; margin: 4px 0 24px; }
+
+  table.parliament-results-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  table.parliament-results-table th,
+  table.parliament-results-table td { padding: 11px 8px; border-bottom: 1px solid #ededed; }
+  table.parliament-results-table thead th { font-size: 0.78rem; color: #999; font-weight: 600; border-bottom: 1px solid #d8d8d8; }
+  table.parliament-results-table tbody td:first-child,
+  table.parliament-results-table thead th:first-child { font-weight: 500; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .party-swatch { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 9px; vertical-align: -1px; }
+  .chg-up { color: #15a34a; font-weight: 600; }
+  .chg-down { color: #dc2626; font-weight: 600; }
+  .chg-none { color: #bbb; }
+</style>
+</head>
+<body>
+<div class="panel">
+  <h1 class="panel-title">House of Representatives composition</h1>
+
+  <div class="toggle-row">
+    <div class="toggle-label" data-active="true" id="label-results" onclick="setMode('results')">
+      <div class="lead">2025 Results</div>
+      <div class="sub">Actual election outcome</div>
+    </div>
+    <div class="switch" id="switch" onclick="toggleMode()"><div class="knob"></div></div>
+    <div class="toggle-label" data-active="false" id="label-predicted" onclick="setMode('predicted')">
+      <div class="lead">Predicted</div>
+      <div class="sub">Model projection</div>
+    </div>
+  </div>
+
+  <div class="chart"><svg id="arc" preserveAspectRatio="xMidYMid meet"></svg></div>
+  <div class="seat-count" id="seat-count"></div>
+
+  <table class="parliament-results-table">
+    <thead>
+      <tr><th>Party</th><th class="num">2025</th><th class="num">Predicted</th><th class="num">Change</th></tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+
+<script>
+// --- Parties, in left→right order (name, colour, 2025 result, model prediction) ---
+const PARTIES = [
+  { name: "Labor",                     color: "#DE3A30", results: 94, predicted: 76 },
+  { name: "One Nation",                color: "#F2811C", results:  0, predicted: 53 },
+  { name: "Coalition",                 color: "#2E6DB4", results: 43, predicted: 12 },
+  { name: "Independent",               color: "#8C8C8C", results: 10, predicted:  8 },
+  { name: "Katter's Australian Party", color: "#6E1A1A", results:  1, predicted:  1 },
+  { name: "Greens",                    color: "#10A05F", results:  1, predicted:  0 },
+  { name: "Centre Alliance",           color: "#F2C200", results:  1, predicted:  0 },
+];
+
+// --- Arc layout (port of computeArcLayout from src/arc-utils.ts) ---
+const OUTER = 250, INNER_RATIO = 0.14, SEAT_RATIO = 0.42;
+
+function autoRows(total, f) {
+  const k = (2 * (1 - f)) / (Math.PI * (1 + f));
+  return Math.max(1, Math.round(Math.sqrt(total * k)));
+}
+function rowRadii(rows, inner, outer) {
+  if (rows === 1) return [(inner + outer) / 2];
+  return Array.from({ length: rows }, (_, i) => inner + ((outer - inner) * i) / (rows - 1));
+}
+function distribute(total, radii) {
+  const sum = radii.reduce((a, b) => a + b, 0);
+  if (!sum) return radii.map(() => 0);
+  const raw = radii.map((r) => (total * r) / sum);
+  const counts = raw.map(Math.floor);
+  let rem = total - counts.reduce((a, b) => a + b, 0);
+  const order = raw.map((v, i) => ({ i, frac: v - Math.floor(v) })).sort((a, b) => b.frac - a.frac);
+  for (let k = 0; rem > 0; k++, rem--) counts[order[k % order.length].i]++;
+  return counts;
+}
+
+function computeArcLayout(parties) {
+  const inner = OUTER * INNER_RATIO;
+  const total = parties.reduce((s, p) => s + Math.max(0, Math.floor(p.seats)), 0);
+  if (!total) return { seats: [], seatRadius: 0, viewBox: `${-OUTER} ${-OUTER} ${2 * OUTER} ${OUTER}` };
+
+  let rows = Math.min(autoRows(total, INNER_RATIO), total);
+  let radii = rowRadii(rows, inner, OUTER);
+  let perRow = distribute(total, radii);
+  while (rows > 1 && perRow.some((n) => n === 0)) {
+    rows--; radii = rowRadii(rows, inner, OUTER); perRow = distribute(total, radii);
+  }
+
+  const placed = [];
+  for (let r = 0; r < rows; r++) {
+    for (let j = 0; j < perRow[r]; j++) {
+      const frac = perRow[r] === 1 ? 0.5 : (j + 0.5) / perRow[r];
+      const angle = Math.PI * (1 - frac);
+      placed.push({ row: r, angle, x: radii[r] * Math.cos(angle), y: -radii[r] * Math.sin(angle) });
+    }
+  }
+  placed.sort((a, b) => b.angle - a.angle || a.row - b.row);
+
+  const seats = [];
+  let cursor = 0;
+  parties.forEach((party) => {
+    const n = Math.max(0, Math.floor(party.seats));
+    for (let c = 0; c < n; c++, cursor++) seats.push({ index: cursor, ...placed[cursor], party });
+  });
+
+  const radialSpacing = rows === 1 ? OUTER - inner : (OUTER - inner) / (rows - 1);
+  const arcSpacings = radii.map((r, i) => (perRow[i] ? (Math.PI * r) / perRow[i] : Infinity));
+  const seatRadius = SEAT_RATIO * Math.min(radialSpacing, ...arcSpacings);
+  const pad = seatRadius;
+  return { seats, seatRadius, viewBox: `${-OUTER - pad} ${-OUTER - pad} ${2 * (OUTER + pad)} ${OUTER + 2 * pad}` };
+}
+
+// --- Rendering ---
+const svgNS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("arc");
+let mode = "results";
+
+function renderArc() {
+  const parties = PARTIES.map((p) => ({ name: p.name, color: p.color, seats: p[mode] }));
+  const layout = computeArcLayout(parties);
+  svg.setAttribute("viewBox", layout.viewBox);
+
+  // Reconcile <circle> nodes by seat index so positions/colours animate.
+  const existing = svg.childNodes;
+  layout.seats.forEach((seat, i) => {
+    let c = existing[i];
+    if (!c) {
+      c = document.createElementNS(svgNS, "circle");
+      c.setAttribute("cx", "0");
+      c.setAttribute("cy", "0");
+      svg.appendChild(c);
+    }
+    c.setAttribute("r", layout.seatRadius);
+    c.setAttribute("fill", seat.party.color);
+    c.style.transform = `translate(${seat.x}px, ${seat.y}px)`;
+    let title = c.firstChild;
+    if (!title) { title = document.createElementNS(svgNS, "title"); c.appendChild(title); }
+    title.textContent = seat.party.name;
+  });
+  while (existing.length > layout.seats.length) svg.removeChild(svg.lastChild);
+
+  const total = parties.reduce((s, p) => s + p.seats, 0);
+  document.getElementById("seat-count").textContent = `${total} seats`;
+}
+
+function renderTable() {
+  const rows = PARTIES.map((p) => {
+    const change = p.predicted - p.results;
+    let chg;
+    if (change === 0) chg = '<span class="chg-none">—</span>';
+    else if (change > 0) chg = `<span class="chg-up">▲ +${change}</span>`;
+    else chg = `<span class="chg-down">▼ −${Math.abs(change)}</span>`;
+    return `<tr>
+      <td><span class="party-swatch" style="background:${p.color}"></span>${p.name}</td>
+      <td class="num">${p.results}</td>
+      <td class="num">${p.predicted}</td>
+      <td class="num">${chg}</td>
+    </tr>`;
+  }).join("");
+  document.getElementById("table-body").innerHTML = rows;
+}
+
+function setMode(next) {
+  mode = next;
+  document.getElementById("switch").classList.toggle("on", mode === "predicted");
+  document.getElementById("label-results").dataset.active = String(mode === "results");
+  document.getElementById("label-predicted").dataset.active = String(mode === "predicted");
+  renderArc();
+}
+function toggleMode() { setMode(mode === "results" ? "predicted" : "results"); }
+
+renderArc();
+renderTable();
+</script>
+</body>
+</html>

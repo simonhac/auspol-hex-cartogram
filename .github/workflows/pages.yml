@@ -26,6 +26,7 @@ jobs:
           cp data/elections.json _site/data/elections.json
           cp examples/vanilla.html _site/vanilla.html
           cp examples/analysis.html _site/analysis.html
+          cp examples/parliament.html _site/parliament.html
           sed -i 's|\.\./data/elections\.json|data/elections.json|g' _site/vanilla.html
           sed -i 's|\.\./data/elections\.json|data/elections.json|g' _site/analysis.html
           cat > _site/index.html <<'INDEXEOF'
@@ -52,6 +53,7 @@ jobs:
           <div class="links">
           <a href="vanilla.html">Interactive Cartogram<small>Election viewer with tooltips and state borders</small></a>
           <a href="analysis.html">Transition &amp; Error Analysis<small>Side-by-side comparison and geographic analysis</small></a>
+          <a href="parliament.html">Parliament Composition<small>Seat arc with party wedges and results table</small></a>
           </div>
           </body>
           </html>

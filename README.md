@@ -1,10 +1,11 @@
 # Australian Federal Electorate Hex Cartogram
 
-Equal-area hex maps for Australian federal House of Representatives electorates, covering the 2019, 2022, and 2025 elections.
+A small collection of parliament-visualisation components, framework-agnostic at the core with thin React wrappers:
 
-Each electorate is represented as a single hexagon on a unified grid. The layout approximates Australia's geography while giving every electorate exactly the same visual weight — unlike geographic maps where outback electorates dwarf inner-city ones.
+- **Hex cartogram** — equal-area hex maps for Australian federal House of Representatives electorates (2019, 2022, 2025). Each electorate is a single hexagon on a unified grid, giving every electorate exactly the same visual weight — unlike geographic maps where outback electorates dwarf inner-city ones. Based on the [ABC News federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results), which pioneered the format for Australian elections.
+- **Parliament arc** — a semicircular seat-dot composition chart for *any* parliament: pass any number of parties (name, colour, seats), in order, and it lays them out as clean left→right wedges. Comes with a matching results/legend table.
 
-Based on the [ABC News federal election hex map](https://www.abc.net.au/news/elections/federal/2025/results), which pioneered the equal-area hex cartogram format for Australian elections.
+Every component is built the same way: a pure layout function with no framework dependencies, consumed by an optional React component. Use the data and utilities directly in any JS/TS project, or drop in the React components.
 
 ## Install
 
@@ -27,6 +28,41 @@ function App() {
     />
   );
 }
+```
+
+## Quick start (parliament arc)
+
+```tsx
+import { ParliamentArc, ResultsTable } from "auspol-hex-cartogram/react";
+
+// Parties in left→right order. Works for any parliament, any size.
+const parties = [
+  { name: "Labor", color: "#DE3A30", seats: 76 },
+  { name: "One Nation", color: "#F08A1D", seats: 53 },
+  { name: "Coalition", color: "#2B5FA5", seats: 12 },
+  { name: "Independent", color: "#8C8C8C", seats: 8 },
+  { name: "Katter's Australian Party", color: "#6E1A1A", seats: 1 },
+];
+
+function App() {
+  return (
+    <>
+      <ParliamentArc parties={parties} />
+      <ResultsTable parties={parties} />
+    </>
+  );
+}
+```
+
+Prefer to do your own rendering? The pure layout function returns seat positions
+for any SVG/canvas:
+
+```javascript
+import { computeArcLayout } from "auspol-hex-cartogram";
+
+const { seats, seatRadius, viewBox } = computeArcLayout(parties);
+// seats[i] = { index, row, angle, x, y, party, partyIndex }
+// `index` 0 is the leftmost seat; parties form contiguous left→right wedges.
 ```
 
 ## Quick start (vanilla JS)
@@ -80,6 +116,10 @@ where `size = 14` pixels. Grid bounds: col 0–13, row 0–19.
 | `GridEntry` | Raw tuple: `[col, row, state, name]` |
 | `Electorate` | Resolved object: `{ code, name, state, seatId, col, row, px, py }` |
 | `ElectionMap` | Dataset: `{ electionId, label, seatCount, grid, electorates }` |
+| `Party` | Input: `{ id?, name, color, seats }` |
+| `ArcSeat` | Resolved seat: `{ index, row, angle, x, y, party, partyIndex }` |
+| `ArcLayout` | Layout: `{ seats, rows, seatsPerRow, seatRadius, innerRadius, outerRadius, width, height, viewBox }` |
+| `ArcLayoutOptions` | Tuning: `{ rows?, outerRadius?, innerRadiusRatio?, seatRadiusRatio?, seatRadius? }` |
 
 ### Functions
 
@@ -90,6 +130,7 @@ where `size = 14` pixels. Grid bounds: col 0–13, row 0–19.
 | `computeStateBorders(hexes, size)` | Array of electorates → SVG `d` path for state borders |
 | `resolveGrid(grid)` | Raw `GridEntry[]` → `Electorate[]` with computed pixels |
 | `nameToSeatId(name)` | `"Kingsford Smith"` → `"KINGSFORDSMITH"` |
+| `computeArcLayout(parties, options?)` | `Party[]` → `ArcLayout` (semicircle seat-dot positions) |
 
 ### Constants
 
@@ -124,6 +165,34 @@ Import from `auspol-hex-cartogram/react`:
 | `className` | `string` | — | SVG class name |
 
 **`<ElectorateCell>`** — single hex polygon with native SVG tooltip.
+
+**`<ParliamentArc>`** — semicircular seat-dot composition chart. Theme-agnostic (renders only the dots); compose with a heading, caption, or `<ResultsTable>`.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `parties` | `Party[]` | — | Parties in left→right order (required) |
+| `rows` | `number` | auto | Concentric rows (auto-derived from seat count) |
+| `outerRadius` | `number` | `250` | Outer radius in pixels |
+| `innerRadiusRatio` | `number` | `0.14` | Inner radius as a fraction of outer (small hole → sparse inner arc) |
+| `seatRadiusRatio` | `number` | `0.42` | Dot radius as a fraction of spacing |
+| `seatRadius` | `number` | — | Explicit dot radius (overrides ratio) |
+| `animate` | `boolean` | `true` | Animate dots when seat counts change |
+| `transitionMs` | `number` | `500` | Transition duration |
+| `highlightOnHover` | `boolean` | `true` | Dim other parties on hover |
+| `tooltip` | `(s: ArcSeat) => string` | party name | Tooltip text callback |
+| `onSeatClick` | `(s: ArcSeat) => void` | — | Click handler |
+| `style` / `className` | — | — | SVG styling |
+
+**`<ResultsTable>`** — party legend / results table with optional comparison columns and a ▲/▼ change column. Style it via the `parliament-results-table` class.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `parties` | `Party[]` | — | Parties (swatch, name, order, default seats) |
+| `columns` | `{ header, values }[]` | `[Seats]` | Numeric columns (e.g. 2025 / Predicted) |
+| `changeBetween` | `[number, number]` | — | Render a change column = `columns[b] − columns[a]` |
+| `partyHeader` / `changeHeader` | `string` | `"Party"` / `"Change"` | Column headers |
+| `positiveColor` / `negativeColor` | `string` | green / red | Change colours |
+| `onPartyClick` | `(p, i) => void` | — | Row click handler |
 
 ## Elections
 
@@ -215,6 +284,7 @@ After a federal redistribution:
 
 - `examples/vanilla.html` — simple interactive cartogram with election switcher
 - `examples/analysis.html` — transition analysis showing movements, geographic error, and state seat counts
+- `examples/parliament.html` — parliament composition arc with a Results↔Predicted toggle and results table
 
 ## License
 

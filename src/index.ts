@@ -11,6 +11,7 @@
 
 // Types
 export type { GridEntry, Electorate, ElectionMap } from "./types";
+export type { Party, ArcSeat, ArcLayout, ArcLayoutOptions } from "./types";
 
 // Utilities
 export {
@@ -22,6 +23,14 @@ export {
   computeStateBorders,
   STATE_HEX_COLORS,
 } from "./grid-utils";
+
+// Parliament arc (seat-dot) chart
+export {
+  computeArcLayout,
+  ARC_OUTER_RADIUS,
+  ARC_INNER_RATIO,
+  ARC_SEAT_RATIO,
+} from "./arc-utils";
 
 // Election datasets (all loaded from elections.json)
 export { FED_2019, FED_2022, FED_2025 } from "./elections";
